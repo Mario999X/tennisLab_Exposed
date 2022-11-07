@@ -3,7 +3,10 @@ package database
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import config.ConfigProject
+import entities.UsuarioTable
 import mu.KotlinLogging
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.addLogger
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -21,6 +24,7 @@ object DataBaseManage {
             maximumPoolSize = config.jdbcPool
         }
         val dataSource = HikariDataSource(hikariConfig)
+        Database.connect(dataSource)
         log.debug { "Base de datos inicializada exitosamente" }
         if (config.jdbcTablas) {
             crearTablas()
@@ -31,7 +35,7 @@ object DataBaseManage {
         log.debug { "Creando las tablas" }
         if (config.jdbcSQL)
             addLogger(StdOutSqlLogger)
-        //SchemaUtils.create() ToDo agregar los nombres de las tablas
+        SchemaUtils.create(UsuarioTable)
         log.debug { "Tablas creadas" }
     }
 }
