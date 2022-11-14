@@ -2,6 +2,7 @@ package mappers
 
 import entities.UsuarioDao
 import models.Usuario
+import utils.Cifrador
 
 fun UsuarioDao.fromUsuarioDaoToUsuario(): Usuario {
     return Usuario(
@@ -10,7 +11,7 @@ fun UsuarioDao.fromUsuarioDaoToUsuario(): Usuario {
         nombre = nombre,
         apellido = apellido,
         email = email,
-        password = password,
+        password = Cifrador.encryptString(password),
         perfil = Usuario.Perfil.from(perfil)
     )
 }

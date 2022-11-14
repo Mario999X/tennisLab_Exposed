@@ -59,6 +59,4 @@ class UsuariosRepositoryImpl(private val usuarioDao: LongEntityClass<UsuarioDao>
         existe.delete()
         true
     }
-
-
 }

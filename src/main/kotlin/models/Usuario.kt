@@ -1,7 +1,6 @@
 package models
 
-import utils.Cifrador
-import java.util.UUID
+import java.util.*
 
 data class Usuario(
     val id: Long,
@@ -9,7 +8,7 @@ data class Usuario(
     val nombre: String,
     val apellido: String,
     val email: String,
-    val password: String = Cifrador.encryptString(String()),
+    val password: String,
     val perfil: Perfil
 ) {
     enum class Perfil(val rol: String) {

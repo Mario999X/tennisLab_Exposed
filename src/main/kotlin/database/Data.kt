@@ -1,7 +1,7 @@
 package database
 
+import models.Producto
 import models.Usuario
-import utils.Cifrador
 
 fun getUsuariosInit() = listOf(
     Usuario(
@@ -9,7 +9,7 @@ fun getUsuariosInit() = listOf(
         nombre = "Sebastian",
         apellido = "Mendoza",
         email = "email@email.com",
-        password = Cifrador.encryptString("1234"),//TODO: Así funcionaría el SHA512 clavándoselo por aquí. Otra cosa es hacerlo mediante un insert
+        password ="1234",
         perfil = Usuario.Perfil.ADMIN
     ),
     Usuario(
@@ -27,5 +27,24 @@ fun getUsuariosInit() = listOf(
         email = "email3@email.com",
         password = "1234",
         perfil = Usuario.Perfil.TENISTA
+    )
+)
+
+fun getProductoInit() = listOf(
+    Producto(
+        id = 1L,
+        tipo = Producto.Tipo.RAQUETA,
+        marca = "Babolat",
+        modelo = "Pure Aero",
+        stock = 3,
+        precio = 279.95
+    ),
+    Producto(
+        id = 2L,
+        tipo = Producto.Tipo.COMPLEMENTO,
+        marca = "Wilson",
+        modelo = "Dazzle",
+        stock =  5,
+        precio = 7.90
     )
 )
