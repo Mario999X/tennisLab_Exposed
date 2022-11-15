@@ -17,7 +17,7 @@ fun getUsuariosInit() = listOf(
         nombre = "Mario",
         apellido = "Resa",
         email = "email2@email.com",
-        password = "1234",
+        password = "5678",
         perfil = Usuario.Perfil.ENCORDADOR
     ),
     Usuario(
@@ -25,7 +25,7 @@ fun getUsuariosInit() = listOf(
         nombre = "Sandra",
         apellido = "Ortega",
         email = "email3@email.com",
-        password = "1234",
+        password = "4321",
         perfil = Usuario.Perfil.TENISTA
     )
 )

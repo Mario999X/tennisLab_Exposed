@@ -1,7 +1,7 @@
 import config.ConfigProject
 import controllers.ProductoController
 import controllers.UsuariosController
-import database.DataBaseManage
+import database.DataBaseManager
 import database.getProductoInit
 import database.getUsuariosInit
 import entities.ProductoDao
@@ -42,5 +42,5 @@ fun initDataBase() {
     val config = ConfigProject.fromProperties(path)
     println("Configuración: $config")
 
-    DataBaseManage.init(config)
+    DataBaseManager.init(config)
 }

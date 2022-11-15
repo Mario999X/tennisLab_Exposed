@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
 
-object DataBaseManage {
+object DataBaseManager {
     lateinit var config: ConfigProject
     fun init(config: ConfigProject) {
         this.config = config
