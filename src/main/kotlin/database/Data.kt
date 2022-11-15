@@ -1,7 +1,10 @@
 package database
 
+import models.Encordadora
+import models.Personalizadora
 import models.Producto
 import models.Usuario
+import java.time.LocalDate
 
 fun getUsuariosInit() = listOf(
     Usuario(
@@ -9,7 +12,7 @@ fun getUsuariosInit() = listOf(
         nombre = "Sebastian",
         apellido = "Mendoza",
         email = "email@email.com",
-        password ="1234",
+        password = "1234",
         perfil = Usuario.Perfil.ADMIN
     ),
     Usuario(
@@ -44,7 +47,33 @@ fun getProductoInit() = listOf(
         tipo = Producto.Tipo.COMPLEMENTO,
         marca = "Wilson",
         modelo = "Dazzle",
-        stock =  5,
+        stock = 5,
         precio = 7.90
+    )
+)
+
+fun getEncordadorasInit() = listOf(
+    Encordadora(
+        id = 1L,
+        marca = "Toshiba",
+        modelo = "ABC",
+        fechaAdquisicion = LocalDate.now(),
+        numSerie = 120L,
+        isManual = true,
+        tensionMax = 23.2,
+        tensionMin = 20.5
+    )
+)
+
+fun getPersonalizadoras() = listOf(
+    Personalizadora(
+        id = 1L,
+        marca = "Toshiba",
+        modelo = "ABC",
+        fechaAdquisicion = LocalDate.now(),
+        numSerie = 120L,
+        maniobrabilidad = true,
+        balance = false,
+        rigidez = false
     )
 )

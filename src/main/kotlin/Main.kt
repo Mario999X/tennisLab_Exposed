@@ -1,12 +1,16 @@
 import config.ConfigProject
+import controllers.EncordadoraController
+import controllers.PersonalizadoraController
 import controllers.ProductoController
 import controllers.UsuariosController
-import database.DataBaseManager
-import database.getProductoInit
-import database.getUsuariosInit
+import database.*
+import entities.EncordadoraDao
+import entities.PersonalizadoraDao
 import entities.ProductoDao
 import entities.UsuarioDao
 import mu.KotlinLogging
+import repositories.EncordadoraRepositoryImpl
+import repositories.PersonalizadoraRepositoryImpl
 import repositories.ProductoRepositoryImpl
 import repositories.UsuariosRepositoryImpl
 import java.io.File
@@ -19,6 +23,9 @@ fun main() {
 
     val usuariosController = UsuariosController(UsuariosRepositoryImpl(UsuarioDao))
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
+
+    val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
+    val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
 
     getUsuariosInit().forEach { usuario ->
         usuariosController.createUsuario(usuario)
@@ -33,6 +40,21 @@ fun main() {
 
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
+
+    getEncordadorasInit().forEach { m ->
+        encordadorasController.createEncordadora(m)
+    }
+
+    getPersonalizadoras().forEach { m ->
+        personalizadorasController.createPersonalizadora(m)
+    }
+
+    val maquinasEncordadora = encordadorasController.getEncordadoras()
+    maquinasEncordadora.forEach { println(it) }
+
+    val maquinasPersonalizadora = personalizadorasController.getPersonalizadoras()
+    maquinasPersonalizadora.forEach { println(it) }
+
 }
 
 fun initDataBase() {
