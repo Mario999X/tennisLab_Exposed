@@ -1,6 +1,5 @@
 package entities
 
-import org.apache.commons.math3.stat.descriptive.summary.Product
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID

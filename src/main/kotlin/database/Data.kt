@@ -1,6 +1,8 @@
 package database
 
+import models.Adquisicion
 import models.Producto
+import models.Tarea
 import models.Usuario
 
 fun getUsuariosInit() = listOf(
@@ -9,7 +11,7 @@ fun getUsuariosInit() = listOf(
         nombre = "Sebastian",
         apellido = "Mendoza",
         email = "email@email.com",
-        password ="1234",
+        password = "1234",
         perfil = Usuario.Perfil.ADMIN
     ),
     Usuario(
@@ -44,7 +46,16 @@ fun getProductoInit() = listOf(
         tipo = Producto.Tipo.COMPLEMENTO,
         marca = "Wilson",
         modelo = "Dazzle",
-        stock =  5,
+        stock = 5,
         precio = 7.90
+    )
+)
+
+fun getAdquisicionInit() = listOf(
+    Adquisicion(
+        id = 1L,
+        cantidad = 1,
+        producto = getProductoInit()[0],
+        precio = getProductoInit()[0].precio
     )
 )

@@ -1,14 +1,13 @@
 import config.ConfigProject
+import controllers.AdquisicionController
 import controllers.ProductoController
 import controllers.UsuariosController
-import database.DataBaseManager
-import database.getProductoInit
-import database.getUsuariosInit
+import database.*
+import entities.AdquisicionDao
 import entities.ProductoDao
 import entities.UsuarioDao
 import mu.KotlinLogging
-import repositories.ProductoRepositoryImpl
-import repositories.UsuariosRepositoryImpl
+import repositories.*
 import java.io.File
 import java.nio.file.Paths
 
@@ -19,6 +18,7 @@ fun main() {
 
     val usuariosController = UsuariosController(UsuariosRepositoryImpl(UsuarioDao))
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
+    val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
 
     getUsuariosInit().forEach { usuario ->
         usuariosController.createUsuario(usuario)
@@ -28,11 +28,20 @@ fun main() {
         productosController.createProducto(producto)
     }
 
+    getAdquisicionInit().forEach { adquisicion ->
+        adquisicionController.createAdquisicion(adquisicion)
+    }
+
+
     val usuarios = usuariosController.getUsuarios()
     usuarios.forEach { println(it) }
 
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
+
+    val adquisiciones = adquisicionController.getAdquisiciones()
+    adquisiciones.forEach { println(it) }
+
 }
 
 fun initDataBase() {
