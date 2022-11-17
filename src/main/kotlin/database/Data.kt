@@ -1,9 +1,6 @@
 package database
 
-import models.Encordadora
-import models.Personalizadora
-import models.Producto
-import models.Usuario
+import models.*
 import java.time.LocalDate
 
 fun getUsuariosInit() = listOf(
@@ -75,5 +72,12 @@ fun getPersonalizadoras() = listOf(
         maniobrabilidad = true,
         balance = false,
         rigidez = false
+    )
+)
+
+fun getTurno() = listOf(
+    Turno(
+        id = 1L,
+        horario = Turno.TipoHorario.MAniANA
     )
 )

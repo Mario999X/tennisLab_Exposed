@@ -1,18 +1,9 @@
 import config.ConfigProject
-import controllers.EncordadoraController
-import controllers.PersonalizadoraController
-import controllers.ProductoController
-import controllers.UsuariosController
+import controllers.*
 import database.*
-import entities.EncordadoraDao
-import entities.PersonalizadoraDao
-import entities.ProductoDao
-import entities.UsuarioDao
+import entities.*
 import mu.KotlinLogging
-import repositories.EncordadoraRepositoryImpl
-import repositories.PersonalizadoraRepositoryImpl
-import repositories.ProductoRepositoryImpl
-import repositories.UsuariosRepositoryImpl
+import repositories.*
 import java.io.File
 import java.nio.file.Paths
 
@@ -26,6 +17,8 @@ fun main() {
 
     val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
     val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
+
+    val turnosController = TurnoController(TurnoRepositoryImpl(TurnoDao))
 
     getUsuariosInit().forEach { usuario ->
         usuariosController.createUsuario(usuario)
@@ -55,6 +48,12 @@ fun main() {
     val maquinasPersonalizadora = personalizadorasController.getPersonalizadoras()
     maquinasPersonalizadora.forEach { println(it) }
 
+    getTurno().forEach {
+        turnosController.createTurno(it)
+    }
+
+    val turno = turnosController.getTurnos()
+    turno.forEach { println(it) }
 }
 
 fun initDataBase() {
