@@ -2,7 +2,7 @@ package controllers
 
 import models.Adquisicion
 import mu.KotlinLogging
-import repositories.AdquisicionRepository
+import repositories.adquisicion.AdquisicionRepository
 
 private val log = KotlinLogging.logger { }
 

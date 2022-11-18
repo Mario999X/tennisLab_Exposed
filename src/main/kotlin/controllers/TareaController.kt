@@ -2,7 +2,7 @@ package controllers
 
 import models.Tarea
 import mu.KotlinLogging
-import repositories.TareaRepository
+import repositories.tarea.TareaRepository
 
 private val log = KotlinLogging.logger { }
 

@@ -1,4 +1,4 @@
-package repositories
+package repositories.usuario
 
 import entities.UsuarioDao
 import mappers.fromUsuarioDaoToUsuario

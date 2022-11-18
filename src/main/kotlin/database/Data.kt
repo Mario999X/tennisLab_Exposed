@@ -1,9 +1,6 @@
 package database
 
-import models.Adquisicion
-import models.Producto
-import models.Tarea
-import models.Usuario
+import models.*
 
 fun getUsuariosInit() = listOf(
     Usuario(
@@ -60,10 +57,19 @@ fun getAdquisicionInit() = listOf(
     )
 )
 
+fun getPersonalizacionInit() = listOf(
+    Personalizar(
+        id = 1L,
+        peso = 1.2,
+        balance = 1.3,
+        rigidez = 2
+    )
+)
+
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
         uuidAdquisicion = getAdquisicionInit()[0],
-        precio = getAdquisicionInit()[0].precio
+        precio = getProductoInit()[0].precio
     )
 )

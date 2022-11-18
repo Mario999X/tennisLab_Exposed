@@ -1,4 +1,4 @@
-package repositories
+package repositories.tarea
 
 import entities.AdquisicionDao
 import entities.TareaDao
@@ -35,7 +35,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         return tareaDao.new(entity.id) {
             uuid = entity.uuid
             adquisicion = AdquisicionDao.findById(entity.id)!!
-            precio = entity.precio
+            precio = entity.precio!!
         }.fromTareaDaoToTarea()
     }
 
@@ -44,7 +44,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         return existe.apply {
             uuid = entity.uuid
             adquisicion = AdquisicionDao(id)
-            precio = entity.precio
+            precio = entity.precio!!
         }.fromTareaDaoToTarea()
     }
 

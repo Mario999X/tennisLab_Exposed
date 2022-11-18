@@ -1,4 +1,4 @@
-package repositories
+package repositories.adquisicion
 
 import entities.AdquisicionDao
 import entities.ProductoDao

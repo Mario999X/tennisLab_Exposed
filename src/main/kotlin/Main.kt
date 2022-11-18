@@ -1,18 +1,13 @@
 import config.ConfigProject
-import controllers.AdquisicionController
-import controllers.ProductoController
-import controllers.TareaController
-import controllers.UsuariosController
+import controllers.*
 import database.*
-import entities.AdquisicionDao
-import entities.ProductoDao
-import entities.TareaDao
-import entities.UsuarioDao
+import entities.*
 import mu.KotlinLogging
-import repositories.AdquisicionRepositoryImpl
-import repositories.ProductoRepositoryImpl
-import repositories.TareaRepositoryImpl
-import repositories.UsuariosRepositoryImpl
+import repositories.adquisicion.AdquisicionRepositoryImpl
+import repositories.personalizar.PersonalizarRepositoryImpl
+import repositories.producto.ProductoRepositoryImpl
+import repositories.tarea.TareaRepositoryImpl
+import repositories.usuario.UsuariosRepositoryImpl
 import java.io.File
 import java.nio.file.Paths
 
@@ -24,6 +19,7 @@ fun main() {
     val usuariosController = UsuariosController(UsuariosRepositoryImpl(UsuarioDao))
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
     val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
+    val personalizarController = PersonalizarController(PersonalizarRepositoryImpl(PersonalizarDao))
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
 
     getUsuariosInit().forEach { usuario ->
@@ -36,6 +32,10 @@ fun main() {
 
     getAdquisicionInit().forEach { adquisicion ->
         adquisicionController.createAdquisicion(adquisicion)
+    }
+
+    getPersonalizacionInit().forEach { personalizar ->
+        personalizarController.createPersonalizacion(personalizar)
     }
 
     getTareaInit().forEach { tarea ->
@@ -51,6 +51,9 @@ fun main() {
 
     val adquisiciones = adquisicionController.getAdquisiciones()
     adquisiciones.forEach { println(it) }
+
+    val personalizaciones = personalizarController.getPersonalizaciones()
+    personalizaciones.forEach { println(it) }
 
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }

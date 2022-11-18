@@ -2,7 +2,7 @@ package controllers
 
 import models.Producto
 import mu.KotlinLogging
-import repositories.ProductoRepository
+import repositories.producto.ProductoRepository
 
 private val log = KotlinLogging.logger { }
 
