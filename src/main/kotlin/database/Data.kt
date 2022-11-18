@@ -55,7 +55,15 @@ fun getAdquisicionInit() = listOf(
     Adquisicion(
         id = 1L,
         cantidad = 1,
-        producto = getProductoInit()[0],
+        uuidProducto = getProductoInit()[0],
         precio = getProductoInit()[0].precio
+    )
+)
+
+fun getTareaInit() = listOf(
+    Tarea(
+        id = 1L,
+        uuidAdquisicion = getAdquisicionInit()[0],
+        precio = getAdquisicionInit()[0].precio
     )
 )

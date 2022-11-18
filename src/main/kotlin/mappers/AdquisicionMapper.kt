@@ -7,7 +7,7 @@ fun AdquisicionDao.fromAdquisicionDaoToAdquisicion(): Adquisicion{
     return Adquisicion(
         id = id.value,
         uuid = uuid,
-        producto = producto.fromProductoDaoToProducto(),
+        uuidProducto = producto.fromProductoDaoToProducto(),
         cantidad = cantidad,
         precio = precio
     )

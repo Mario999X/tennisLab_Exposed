@@ -7,7 +7,7 @@ import org.jetbrains.exposed.dao.id.LongIdTable
 
 object AdquisicionTable : LongIdTable("adquisiciones") {
     val uuid = uuid("uuid")
-    val producto = reference("producto_id", ProductoTable)
+    val producto = reference("producto_uuid", ProductoTable)
     val cantidad = integer("cantidad")
     val precio = double("precio")
 }

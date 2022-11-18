@@ -2,14 +2,14 @@ package models
 
 import java.util.*
 
-class Adquisicion(
-    id: Long,
-    uuid: UUID = UUID.randomUUID(),
+data class Adquisicion(
+    val id: Long,
+    val uuid: UUID = UUID.randomUUID(),
     val cantidad: Int,
-    val producto: Producto,
-    precio: Double = producto.precio
-) : Tarea(id, uuid, precio) {
+    val uuidProducto: Producto,
+    val precio: Double = uuidProducto.precio
+){
     override fun toString(): String {
-        return "Adquisicion(uuid=$uuid,cantidad=$cantidad, producto=${producto.tipo}, precio=$precio)"
+        return "Adquisicion(uuid=$uuid, cantidad=$cantidad, uuidProducto=${uuidProducto.uuid}, precio=$precio)"
     }
 }

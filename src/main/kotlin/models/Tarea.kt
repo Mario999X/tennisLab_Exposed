@@ -2,12 +2,13 @@ package models
 
 import java.util.UUID
 
-open class Tarea(
+data class Tarea(
     val id: Long,
     val uuid: UUID = UUID.randomUUID(),
-    val precio: Double
+    val uuidAdquisicion: Adquisicion,
+    val precio: Double = uuidAdquisicion.precio
 ){
     override fun toString(): String {
-        return "Tarea(id=$id, uuid=$uuid, precio=$precio)"
+        return "Tarea(uuid=$uuid, uuidAdquisicion=${uuidAdquisicion.uuid}, precio=$precio)"
     }
 }
