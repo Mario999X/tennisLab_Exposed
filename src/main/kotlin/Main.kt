@@ -1,9 +1,21 @@
 import config.ConfigProject
 import controllers.*
+import controllers.usuario.ClienteController
+import controllers.usuario.EncargadoController
+import controllers.usuario.TrabajadorController
 import database.*
 import entities.*
+import entities.usuario.ClienteDao
+import entities.usuario.EncargadoDao
+import entities.usuario.TrabajadorDao
 import mu.KotlinLogging
-import repositories.*
+import repositories.adquisicion.AdquisicionRepositoryImpl
+import repositories.personalizar.PersonalizarRepositoryImpl
+import repositories.producto.ProductoRepositoryImpl
+import repositories.tarea.TareaRepositoryImpl
+import repositories.usuario.ClienteRepositoryImpl
+import repositories.usuario.EncargadoRepositoryImpl
+import repositories.usuario.TrabajadorRepositoryImpl
 import java.io.File
 import java.nio.file.Paths
 
@@ -12,48 +24,67 @@ fun main() {
     log.info("TennisLab App")
     initDataBase()
 
-    val usuariosController = UsuariosController(UsuariosRepositoryImpl(UsuarioDao))
+    //Controladores
+    val clienteController = ClienteController(ClienteRepositoryImpl(ClienteDao))
+    val trabajadorController = TrabajadorController(TrabajadorRepositoryImpl(TrabajadorDao))
+    val encargadoController = EncargadoController(EncargadoRepositoryImpl(EncargadoDao))
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
+    val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
+    val personalizarController = PersonalizarController(PersonalizarRepositoryImpl(PersonalizarDao))
+    val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
 
-    val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
-    val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
+    //Inserción de datos
+    getClientesInit().forEach { cliente ->
+        clienteController.createCliente(cliente)
+    }
 
-    val turnosController = TurnoController(TurnoRepositoryImpl(TurnoDao))
+    getTrabajadorInit().forEach { trabajador ->
+        trabajadorController.createTrabajador(trabajador)
+    }
 
-    getUsuariosInit().forEach { usuario ->
-        usuariosController.createUsuario(usuario)
+    getEncargadoInit().forEach { encargado ->
+        encargadoController.createEncargado(encargado)
     }
 
     getProductoInit().forEach { producto ->
         productosController.createProducto(producto)
     }
 
-    val usuarios = usuariosController.getUsuarios()
-    usuarios.forEach { println(it) }
+    getAdquisicionInit().forEach { adquisicion ->
+        adquisicionController.createAdquisicion(adquisicion)
+    }
 
+    getPersonalizacionInit().forEach { personalizar ->
+        personalizarController.createPersonalizacion(personalizar)
+    }
+
+    getTareaInit().forEach { tarea ->
+        tareaController.createTarea(tarea)
+    }
+
+    //CRUD
+    //Usuarios
+    val clientes = clienteController.getClientes()
+    clientes.forEach { println(it) }
+    val trabajadores = trabajadorController.getTrabajadores()
+    trabajadores.forEach { println(it) }
+    val encargados = encargadoController.getEncargados()
+    encargados.forEach { println(it) }
+
+    //Productos
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
 
-    getEncordadorasInit().forEach { m ->
-        encordadorasController.createEncordadora(m)
-    }
+    //Tareas: Adquisiciones, personalizaciones y encordados
+    val tareas = tareaController.getTareas()
+    tareas.forEach { println(it) }
 
-    getPersonalizadoras().forEach { m ->
-        personalizadorasController.createPersonalizadora(m)
-    }
+    val adquisiciones = adquisicionController.getAdquisiciones()
+    adquisiciones.forEach { println(it) }
 
-    val maquinasEncordadora = encordadorasController.getEncordadoras()
-    maquinasEncordadora.forEach { println(it) }
+    val personalizaciones = personalizarController.getPersonalizaciones()
+    personalizaciones.forEach { println(it) }
 
-    val maquinasPersonalizadora = personalizadorasController.getPersonalizadoras()
-    maquinasPersonalizadora.forEach { println(it) }
-
-    getTurno().forEach {
-        turnosController.createTurno(it)
-    }
-
-    val turno = turnosController.getTurnos()
-    turno.forEach { println(it) }
 }
 
 fun initDataBase() {

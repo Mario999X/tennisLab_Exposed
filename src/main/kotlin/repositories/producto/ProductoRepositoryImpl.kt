@@ -1,4 +1,4 @@
-package repositories
+package repositories.producto
 
 import entities.ProductoDao
 import mappers.fromProductoDaoToProducto

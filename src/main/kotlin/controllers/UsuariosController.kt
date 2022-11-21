@@ -2,7 +2,7 @@ package controllers
 
 import models.Usuario
 import mu.KotlinLogging
-import repositories.UsuariosRepository
+import repositories.usuario.UsuariosRepository
 
 private val log = KotlinLogging.logger { }
 
