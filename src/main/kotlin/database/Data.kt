@@ -1,31 +1,80 @@
 package database
 
 import models.*
+import models.usuario.Cliente
+import models.usuario.Encargado
+import models.usuario.Trabajador
+import kotlin.math.E
 
-fun getUsuariosInit() = listOf(
-    Usuario(
+fun getClientesInit() = listOf(
+    Cliente(
         id = 1L,
         nombre = "Sebastian",
         apellido = "Mendoza",
         email = "email@email.com",
-        password = "1234",
-        perfil = Usuario.Perfil.ADMIN
+        password = "1234"
     ),
-    Usuario(
+    Cliente(
         id = 2L,
         nombre = "Mario",
         apellido = "Resa",
         email = "email2@email.com",
-        password = "5678",
-        perfil = Usuario.Perfil.ENCORDADOR
+        password = "5678"
     ),
-    Usuario(
+    Cliente(
         id = 3L,
         nombre = "Sandra",
         apellido = "Ortega",
         email = "email3@email.com",
-        password = "4321",
-        perfil = Usuario.Perfil.TENISTA
+        password = "4321"
+    )
+)
+
+fun getTrabajadorInit() = listOf(
+    Trabajador(
+        id = 1L,
+        nombre = "Adrian",
+        apellido = "Garcia",
+        email = "email@email.com",
+        password = "1234"
+    ),
+    Trabajador(
+        id = 2L,
+        nombre = "Julian",
+        apellido = "Estrada",
+        email = "email2@email.com",
+        password = "5678"
+    ),
+    Trabajador(
+        id = 3L,
+        nombre = "Camila",
+        apellido = "Echeverri",
+        email = "email3@email.com",
+        password = "4321"
+    )
+)
+
+fun getEncargadoInit() = listOf(
+    Encargado(
+        id = 1L,
+        nombre = "Alberto",
+        apellido = "Muñoz",
+        email = "email@email.com",
+        password = "1234"
+    ),
+    Encargado(
+        id = 2L,
+        nombre = "Elena",
+        apellido = "Gonzalez",
+        email = "email2@email.com",
+        password = "5678"
+    ),
+    Encargado(
+        id = 3L,
+        nombre = "Elizabeth",
+        apellido = "Merino",
+        email = "email3@email.com",
+        password = "4321"
     )
 )
 

@@ -4,6 +4,9 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import config.ConfigProject
 import entities.*
+import entities.usuario.ClienteTable
+import entities.usuario.EncargadoTable
+import entities.usuario.TrabajadorTable
 import mu.KotlinLogging
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -35,7 +38,15 @@ object DataBaseManager {
         log.debug { "Creando las tablas" }
         if (config.jdbcSQL)
             addLogger(StdOutSqlLogger)
-        SchemaUtils.create(UsuarioTable, ProductoTable, AdquisicionTable, PersonalizarTable, TareaTable)
+        SchemaUtils.create(
+            ClienteTable,
+            ProductoTable,
+            AdquisicionTable,
+            PersonalizarTable,
+            TareaTable,
+            TrabajadorTable,
+            EncargadoTable
+        )
         log.debug { "Tablas creadas" }
     }
 }
