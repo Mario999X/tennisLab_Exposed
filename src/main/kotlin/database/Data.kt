@@ -1,10 +1,12 @@
 package database
 
 import models.*
+import java.time.LocalDate
+import models.maquina.Encordadora
+import models.maquina.Personalizadora
 import models.usuario.Cliente
 import models.usuario.Encargado
 import models.usuario.Trabajador
-import kotlin.math.E
 
 fun getClientesInit() = listOf(
     Cliente(
@@ -120,5 +122,38 @@ fun getTareaInit() = listOf(
         id = 1L,
         uuidAdquisicion = getAdquisicionInit()[0],
         precio = getProductoInit()[0].precio
+    )
+)
+
+fun getEncordadorasInit() = listOf(
+    Encordadora(
+        id = 1L,
+        marca = "Toshiba",
+        modelo = "ABC",
+        fechaAdquisicion = LocalDate.now(),
+        numSerie = 120L,
+        isManual = true,
+        tensionMax = 23.2,
+        tensionMin = 20.5
+    )
+)
+
+fun getPersonalizadoras() = listOf(
+    Personalizadora(
+        id = 1L,
+        marca = "Toshiba",
+        modelo = "ABC",
+        fechaAdquisicion = LocalDate.now(),
+        numSerie = 120L,
+        maniobrabilidad = true,
+        balance = false,
+        rigidez = false
+    )
+)
+
+fun getTurno() = listOf(
+    Turno(
+        id = 1L,
+        horario = Turno.TipoHorario.MAniANA
     )
 )
