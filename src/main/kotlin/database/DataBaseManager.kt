@@ -4,6 +4,8 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import config.ConfigProject
 import entities.*
+import entities.maquina.EncordadoraTable
+import entities.maquina.PersonalizadoraTable
 import entities.usuario.ClienteTable
 import entities.usuario.EncargadoTable
 import entities.usuario.TrabajadorTable
@@ -45,7 +47,9 @@ object DataBaseManager {
             PersonalizarTable,
             TareaTable,
             TrabajadorTable,
-            EncargadoTable
+            EncargadoTable,
+            EncordadoraTable,
+            PersonalizadoraTable
         )
         log.debug { "Tablas creadas" }
     }

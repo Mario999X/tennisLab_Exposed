@@ -1,8 +1,8 @@
-package repositories
+package repositories.encordadora
 
-import entities.EncordadoraDao
+import entities.maquina.EncordadoraDao
 import mappers.fromEncordadoraDaoToEncordadora
-import models.Encordadora
+import models.maquina.Encordadora
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction

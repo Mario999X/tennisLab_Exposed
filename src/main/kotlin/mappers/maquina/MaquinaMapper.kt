@@ -1,9 +1,9 @@
 package mappers
 
-import entities.EncordadoraDao
-import entities.PersonalizadoraDao
-import models.Encordadora
-import models.Personalizadora
+import entities.maquina.EncordadoraDao
+import entities.maquina.PersonalizadoraDao
+import models.maquina.Encordadora
+import models.maquina.Personalizadora
 
 fun EncordadoraDao.fromEncordadoraDaoToEncordadora(): Encordadora {
     return Encordadora(

@@ -1,14 +1,20 @@
 import config.ConfigProject
 import controllers.*
+import controllers.maquina.EncordadoraController
+import controllers.maquina.PersonalizadoraController
 import controllers.usuario.ClienteController
 import controllers.usuario.EncargadoController
 import controllers.usuario.TrabajadorController
 import database.*
 import entities.*
+import entities.maquina.EncordadoraDao
+import entities.maquina.PersonalizadoraDao
 import entities.usuario.ClienteDao
 import entities.usuario.EncargadoDao
 import entities.usuario.TrabajadorDao
 import mu.KotlinLogging
+import repositories.encordadora.EncordadoraRepositoryImpl
+import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.adquisicion.AdquisicionRepositoryImpl
 import repositories.personalizar.PersonalizarRepositoryImpl
 import repositories.producto.ProductoRepositoryImpl
@@ -31,6 +37,8 @@ fun main() {
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
     val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
     val personalizarController = PersonalizarController(PersonalizarRepositoryImpl(PersonalizarDao))
+    val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
+    val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
 
     //Inserción de datos
@@ -75,9 +83,13 @@ fun main() {
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
 
-    //Tareas: Adquisiciones, personalizaciones y encordados
-    val tareas = tareaController.getTareas()
-    tareas.forEach { println(it) }
+    getEncordadorasInit().forEach { m ->
+        encordadorasController.createEncordadora(m)
+    }
+
+    getPersonalizadoras().forEach { m ->
+        personalizadorasController.createPersonalizadora(m)
+    }
 
     val adquisiciones = adquisicionController.getAdquisiciones()
     adquisiciones.forEach { println(it) }

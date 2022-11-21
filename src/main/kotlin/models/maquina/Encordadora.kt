@@ -1,4 +1,4 @@
-package models
+package models.maquina
 
 import java.time.LocalDate
 import java.util.UUID

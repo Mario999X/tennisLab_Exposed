@@ -1,4 +1,4 @@
-package repositories
+package repositories.turno
 
 import entities.TurnoDao
 import mappers.fromTurnoDaoToTurno

@@ -1,8 +1,8 @@
-package controllers
+package controllers.maquina
 
-import models.Personalizadora
+import models.maquina.Personalizadora
 import mu.KotlinLogging
-import repositories.PersonalizadoraRepository
+import repositories.personalizadora.PersonalizadoraRepository
 
 private val log = KotlinLogging.logger { }
 

@@ -1,8 +1,8 @@
-package controllers
+package controllers.maquina
 
-import models.Encordadora
+import models.maquina.Encordadora
 import mu.KotlinLogging
-import repositories.EncordadoraRepository
+import repositories.encordadora.EncordadoraRepository
 
 private val log = KotlinLogging.logger { }
 

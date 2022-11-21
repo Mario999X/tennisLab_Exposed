@@ -1,4 +1,4 @@
-package entities
+package entities.maquina
 
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass

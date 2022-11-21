@@ -2,11 +2,11 @@ package database
 
 import models.*
 import java.time.LocalDate
-import models.*
+import models.maquina.Encordadora
+import models.maquina.Personalizadora
 import models.usuario.Cliente
 import models.usuario.Encargado
 import models.usuario.Trabajador
-import kotlin.math.E
 
 fun getClientesInit() = listOf(
     Cliente(
@@ -15,8 +15,6 @@ fun getClientesInit() = listOf(
         apellido = "Mendoza",
         email = "email@email.com",
         password = "1234"
-        password = "1234",
-        perfil = Usuario.Perfil.ADMIN
     ),
     Cliente(
         id = 2L,

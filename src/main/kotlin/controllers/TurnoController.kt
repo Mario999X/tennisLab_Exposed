@@ -2,7 +2,7 @@ package controllers
 
 import models.Turno
 import mu.KotlinLogging
-import repositories.TurnoRepository
+import repositories.turno.TurnoRepository
 
 private val log = KotlinLogging.logger { }
 

@@ -1,5 +1,6 @@
-package models
+package models.maquina
 
+import models.maquina.Maquina
 import java.time.LocalDate
 import java.util.*
 

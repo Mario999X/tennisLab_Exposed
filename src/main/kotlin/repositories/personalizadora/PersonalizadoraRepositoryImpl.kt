@@ -1,15 +1,16 @@
-package repositories
+package repositories.personalizadora
 
-import entities.PersonalizadoraDao
+import entities.maquina.PersonalizadoraDao
 import mappers.fromPersonalizadoraDaoToPersonalizar
-import models.Personalizadora
+import models.maquina.Personalizadora
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
 
-class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityClass<PersonalizadoraDao>) : PersonalizadoraRepository {
+class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityClass<PersonalizadoraDao>) :
+    PersonalizadoraRepository {
     override fun findAll(): List<Personalizadora> = transaction {
         log.debug { "findAll()" }
         personalizadoraDao.all().map { it.fromPersonalizadoraDaoToPersonalizar() }
