@@ -50,7 +50,8 @@ object DataBaseManager {
             TrabajadorTable,
             EncargadoTable,
             EncordadoraTable,
-            PersonalizadoraTable
+            PersonalizadoraTable,
+            TurnoTable
         )
         log.debug { "Tablas creadas" }
     }

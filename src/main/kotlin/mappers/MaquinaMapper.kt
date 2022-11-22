@@ -19,7 +19,7 @@ fun EncordadoraDao.fromEncordadoraDaoToEncordadora(): Encordadora {
     )
 }
 
-fun PersonalizadoraDao.fromPersonalizadoraDaoToPersonalizar(): Personalizadora {
+fun PersonalizadoraDao.fromPersonalizadoraDaoToPersonalizadora(): Personalizadora {
     return Personalizadora(
         id = id.value,
         uuid = uuid,

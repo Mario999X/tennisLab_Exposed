@@ -47,9 +47,9 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
             uuid = entity.uuid
-            adquisicion = AdquisicionDao(id)
-            personalizar = PersonalizarDao(id)
-            encordar = EncordarDao(id)
+            adquisicion = AdquisicionDao.findById(entity.id)!!
+            personalizar = PersonalizarDao.findById(entity.id)!!
+            encordar = EncordarDao.findById(entity.id)!!
             precio = entity.precio
         }.fromTareaDaoToTarea()
     }

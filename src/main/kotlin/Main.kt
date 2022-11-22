@@ -20,6 +20,7 @@ import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.personalizar.PersonalizarRepositoryImpl
 import repositories.producto.ProductoRepositoryImpl
 import repositories.tarea.TareaRepositoryImpl
+import repositories.turno.TurnoRepositoryImpl
 import repositories.usuario.ClienteRepositoryImpl
 import repositories.usuario.EncargadoRepositoryImpl
 import repositories.usuario.TrabajadorRepositoryImpl
@@ -42,6 +43,7 @@ fun main() {
     val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
     val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
+    val turnoController = TurnoController(TurnoRepositoryImpl(TurnoDao))
 
     //Inserción de datos
     getClientesInit().forEach { cliente ->
@@ -72,7 +74,7 @@ fun main() {
         encordadorasController.createEncordadora(encordadora)
     }
 
-    getPersonalizadoras().forEach { personalizadora ->
+    getPersonalizadorasInit().forEach { personalizadora ->
         personalizadorasController.createPersonalizadora(personalizadora)
     }
     getEncordadoInit().forEach { encordado ->
@@ -81,6 +83,10 @@ fun main() {
 
     getTareaInit().forEach { tarea ->
         tareaController.createTarea(tarea)
+    }
+
+    getTurnosInit().forEach { turno ->
+        turnoController.createTurno(turno)
     }
 
     //CRUD
@@ -112,6 +118,9 @@ fun main() {
     //Tareas
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }
+
+    val turnos = turnoController.getTurnos()
+    turnos.forEach { println(it)}
 
 }
 
