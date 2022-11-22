@@ -1,17 +1,42 @@
 package mappers
 
-import entities.UsuarioDao
-import models.Usuario
+import entities.usuario.ClienteDao
+import entities.usuario.EncargadoDao
+import entities.usuario.TrabajadorDao
+import models.usuario.Cliente
+import models.usuario.Encargado
+import models.usuario.Trabajador
 import utils.Cifrador
 
-fun UsuarioDao.fromUsuarioDaoToUsuario(): Usuario {
-    return Usuario(
+fun ClienteDao.fromClienteDaoToCliente(): Cliente {
+    return Cliente(
         id = id.value,
         uuid = uuid,
         nombre = nombre,
         apellido = apellido,
         email = email,
-        password = Cifrador.encryptString(password),
-        perfil = Usuario.Perfil.from(perfil)
+        password = Cifrador.encryptString(password)
+    )
+}
+
+fun EncargadoDao.fromEncargadoDaoToEncargado(): Encargado {
+    return Encargado(
+        id = id.value,
+        uuid = uuid,
+        nombre = nombre,
+        apellido = apellido,
+        email = email,
+        password = Cifrador.encryptString(password)
+    )
+}
+
+fun TrabajadorDao.fromTrabajadorDaoToTrabajador(): Trabajador {
+    return Trabajador(
+        id = id.value,
+        uuid = uuid,
+        nombre = nombre,
+        apellido = apellido,
+        email = email,
+        password = Cifrador.encryptString(password)
     )
 }

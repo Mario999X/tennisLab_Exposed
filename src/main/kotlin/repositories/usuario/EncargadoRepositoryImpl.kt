@@ -1,8 +1,7 @@
 package repositories.usuario
 
 import entities.usuario.EncargadoDao
-import mappers.fromTrabajadorDaoToTrabajador
-import mappers.usuario.fromEncargadoDaoToEncargado
+import mappers.fromEncargadoDaoToEncargado
 import models.usuario.Encargado
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.LongEntityClass
