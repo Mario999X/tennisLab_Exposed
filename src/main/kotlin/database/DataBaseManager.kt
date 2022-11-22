@@ -45,6 +45,7 @@ object DataBaseManager {
             ProductoTable,
             AdquisicionTable,
             PersonalizarTable,
+            EncordarTable,
             TareaTable,
             TrabajadorTable,
             EncargadoTable,

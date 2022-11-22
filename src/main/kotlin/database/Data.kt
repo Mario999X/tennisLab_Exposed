@@ -117,11 +117,24 @@ fun getPersonalizacionInit() = listOf(
     )
 )
 
+fun getEncordadoInit() = listOf(
+    Encordar(
+        id = 1L,
+        tensionCuerdasHorizontales = 2.0,
+        cordajeHorizontal = "Dato 1",
+        tensionCuerdasVerticales = 3.2,
+        cordajeVertical = "Dato 2",
+        nudos = 2
+    )
+)
+
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
         uuidAdquisicion = getAdquisicionInit()[0],
-        precio = getProductoInit()[0].precio
+        uuidPersonalizacion = getPersonalizacionInit()[0],
+        uuidEncordar = getEncordadoInit()[0],
+        precio = getAdquisicionInit()[0].precio + getPersonalizacionInit()[0].precio + getEncordadoInit()[0].precio
     )
 )
 

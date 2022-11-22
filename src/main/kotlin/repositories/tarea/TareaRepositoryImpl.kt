@@ -1,6 +1,8 @@
 package repositories.tarea
 
 import entities.AdquisicionDao
+import entities.EncordarDao
+import entities.PersonalizarDao
 import entities.TareaDao
 import mappers.fromTareaDaoToTarea
 import models.Tarea
@@ -35,7 +37,9 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         return tareaDao.new(entity.id) {
             uuid = entity.uuid
             adquisicion = AdquisicionDao.findById(entity.id)!!
-            precio = entity.precio!!
+            personalizar = PersonalizarDao.findById(entity.id)!!
+            encordar = EncordarDao.findById(entity.id)!!
+            precio = entity.precio
         }.fromTareaDaoToTarea()
     }
 
@@ -44,7 +48,9 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         return existe.apply {
             uuid = entity.uuid
             adquisicion = AdquisicionDao(id)
-            precio = entity.precio!!
+            personalizar = PersonalizarDao(id)
+            encordar = EncordarDao(id)
+            precio = entity.precio
         }.fromTareaDaoToTarea()
     }
 

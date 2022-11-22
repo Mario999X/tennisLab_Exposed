@@ -13,9 +13,10 @@ import entities.usuario.ClienteDao
 import entities.usuario.EncargadoDao
 import entities.usuario.TrabajadorDao
 import mu.KotlinLogging
-import repositories.encordadora.EncordadoraRepositoryImpl
-import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.adquisicion.AdquisicionRepositoryImpl
+import repositories.encordadora.EncordadoraRepositoryImpl
+import repositories.encordar.EncordarRepositoryImpl
+import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.personalizar.PersonalizarRepositoryImpl
 import repositories.producto.ProductoRepositoryImpl
 import repositories.tarea.TareaRepositoryImpl
@@ -37,6 +38,7 @@ fun main() {
     val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
     val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
     val personalizarController = PersonalizarController(PersonalizarRepositoryImpl(PersonalizarDao))
+    val encordarController = EncordarController(EncordarRepositoryImpl(EncordarDao))
     val encordadorasController = EncordadoraController(EncordadoraRepositoryImpl(EncordadoraDao))
     val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
@@ -66,6 +68,17 @@ fun main() {
         personalizarController.createPersonalizacion(personalizar)
     }
 
+    getEncordadorasInit().forEach { encordadora ->
+        encordadorasController.createEncordadora(encordadora)
+    }
+
+    getPersonalizadoras().forEach { personalizadora ->
+        personalizadorasController.createPersonalizadora(personalizadora)
+    }
+    getEncordadoInit().forEach { encordado ->
+        encordarController.createEncordado(encordado)
+    }
+
     getTareaInit().forEach { tarea ->
         tareaController.createTarea(tarea)
     }
@@ -74,8 +87,10 @@ fun main() {
     //Usuarios
     val clientes = clienteController.getClientes()
     clientes.forEach { println(it) }
+
     val trabajadores = trabajadorController.getTrabajadores()
     trabajadores.forEach { println(it) }
+
     val encargados = encargadoController.getEncargados()
     encargados.forEach { println(it) }
 
@@ -83,19 +98,20 @@ fun main() {
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
 
-    getEncordadorasInit().forEach { m ->
-        encordadorasController.createEncordadora(m)
-    }
-
-    getPersonalizadoras().forEach { m ->
-        personalizadorasController.createPersonalizadora(m)
-    }
-
+    //Adquisiciones
     val adquisiciones = adquisicionController.getAdquisiciones()
     adquisiciones.forEach { println(it) }
 
+    //Personalizaciones
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
+
+    val encordados = encordarController.getEncordados()
+    encordados.forEach { println(it) }
+
+    //Tareas
+    val tareas = tareaController.getTareas()
+    tareas.forEach { println(it) }
 
 }
 
