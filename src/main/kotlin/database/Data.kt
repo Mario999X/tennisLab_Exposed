@@ -131,9 +131,20 @@ fun getEncordadoInit() = listOf(
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
-        uuidAdquisicion = getAdquisicionInit()[0],
-        uuidEncordar = getEncordadoInit()[0],
-        precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio
+        adquisicion = getAdquisicionInit()[0],
+        precio = getAdquisicionInit()[0].precio
+    ),
+    Tarea(
+        id = 2L,
+        encordar = getEncordadoInit()[0],
+        raqueta = getRaquetasInit()[0],
+        precio = getEncordadoInit()[0].precio
+    ),
+    Tarea(
+        id = 3L,
+        personalizar = getPersonalizacionInit()[0],
+        raqueta = getRaquetasInit()[1],
+        precio = getPersonalizacionInit()[0].precio
     )
 )
 

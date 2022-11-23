@@ -1,9 +1,6 @@
 package repositories.tarea
 
-import entities.AdquisicionDao
-import entities.EncordarDao
-import entities.PersonalizarDao
-import entities.TareaDao
+import entities.*
 import mappers.fromTareaDaoToTarea
 import models.Tarea
 import mu.KotlinLogging
@@ -36,9 +33,10 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         log.debug { "save($entity) - creando" }
         return tareaDao.new(entity.id) {
             uuid = entity.uuid
-            adquisicion = entity.uuidAdquisicion?.let { AdquisicionDao.findById(it.id) }
-            personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
-            encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
+            adquisicion = entity.adquisicion?.let { AdquisicionDao.findById(it.id) }
+            personalizar = entity.personalizar?.let { PersonalizarDao.findById(it.id) }
+            encordar = entity.encordar?.let { EncordarDao.findById(it.id) }
+            raqueta = entity.raqueta?.let { RaquetaDao.findById(it.id) }
             precio = entity.precio
         }.fromTareaDaoToTarea()
     }
@@ -47,9 +45,10 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
             uuid = entity.uuid
-            adquisicion = entity.uuidAdquisicion?.let { AdquisicionDao.findById(it.id) }
-            personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
-            encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
+            adquisicion = entity.adquisicion?.let { AdquisicionDao.findById(it.id) }
+            personalizar = entity.personalizar?.let { PersonalizarDao.findById(it.id) }
+            encordar = entity.encordar?.let { EncordarDao.findById(it.id) }
+            raqueta = entity.raqueta?.let { RaquetaDao.findById(it.id) }
             precio = entity.precio
         }.fromTareaDaoToTarea()
     }

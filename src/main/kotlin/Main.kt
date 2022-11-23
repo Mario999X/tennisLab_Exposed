@@ -83,16 +83,16 @@ fun main() {
         encordarController.createEncordado(encordado)
     }
 
+    getRaquetasInit().forEach { raqueta ->
+        raquetaController.createRaqueta(raqueta)
+    }
+
     getTareaInit().forEach { tarea ->
         tareaController.createTarea(tarea)
     }
 
     getTurnosInit().forEach { turno ->
         turnoController.createTurno(turno)
-    }
-
-    getRaquetasInit().forEach { raqueta ->
-        raquetaController.createRaqueta(raqueta)
     }
 
     //CRUD
@@ -122,6 +122,10 @@ fun main() {
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
 
+    //Raquetas
+    val raquetas = raquetaController.getRaquetas()
+    raquetas.forEach { println(it) }
+
     //Tareas
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }
@@ -129,10 +133,6 @@ fun main() {
     //Turnos
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
-
-    //Raquetas
-    val raquetas = raquetaController.getRaquetas()
-    raquetas.forEach { println(it) }
 
 }
 
