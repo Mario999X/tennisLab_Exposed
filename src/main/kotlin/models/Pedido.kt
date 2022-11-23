@@ -1,6 +1,7 @@
 package models
 
-import kotlinx.datetime.LocalDate
+
+import java.time.LocalDate
 import java.util.UUID
 
 data class Pedido(
@@ -10,7 +11,7 @@ data class Pedido(
     val fechaEntrada: LocalDate,
     val fechaProgramada: LocalDate,
     val fechaSalida: LocalDate,
-    val tareas: List<Tarea>,
+    val tareas: List<Tarea>? = null,
     val total: Double
 
 ) {
