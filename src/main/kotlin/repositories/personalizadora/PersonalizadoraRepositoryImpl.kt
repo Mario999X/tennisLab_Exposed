@@ -1,7 +1,7 @@
 package repositories.personalizadora
 
 import entities.maquina.PersonalizadoraDao
-import mappers.fromPersonalizadoraDaoToPersonalizar
+import mappers.fromPersonalizadoraDaoToPersonalizadora
 import models.maquina.Personalizadora
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.LongEntityClass
@@ -13,12 +13,12 @@ class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityCl
     PersonalizadoraRepository {
     override fun findAll(): List<Personalizadora> = transaction {
         log.debug { "findAll()" }
-        personalizadoraDao.all().map { it.fromPersonalizadoraDaoToPersonalizar() }
+        personalizadoraDao.all().map { it.fromPersonalizadoraDaoToPersonalizadora() }
     }
 
     override fun findById(id: Long): Personalizadora? = transaction {
         log.debug { "findById($id)" }
-        personalizadoraDao.findById(id)?.fromPersonalizadoraDaoToPersonalizar()
+        personalizadoraDao.findById(id)?.fromPersonalizadoraDaoToPersonalizadora()
     }
 
     override fun save(entity: Personalizadora) = transaction {
@@ -48,7 +48,7 @@ class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityCl
             maniobrabilidad = entity.maniobrabilidad
             balance = entity.balance
             rigidez = entity.rigidez
-        }.fromPersonalizadoraDaoToPersonalizar()
+        }.fromPersonalizadoraDaoToPersonalizadora()
     }
 
     private fun update(entity: Personalizadora, existe: PersonalizadoraDao): Personalizadora {
@@ -62,7 +62,7 @@ class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityCl
             maniobrabilidad = entity.maniobrabilidad
             balance = entity.balance
             rigidez = entity.rigidez
-        }.fromPersonalizadoraDaoToPersonalizar()
+        }.fromPersonalizadoraDaoToPersonalizadora()
     }
 
 }

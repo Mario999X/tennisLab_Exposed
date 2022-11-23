@@ -150,7 +150,7 @@ fun getEncordadorasInit() = listOf(
     )
 )
 
-fun getPersonalizadoras() = listOf(
+fun getPersonalizadorasInit() = listOf(
     Personalizadora(
         id = 1L,
         marca = "Toshiba",
@@ -163,9 +163,11 @@ fun getPersonalizadoras() = listOf(
     )
 )
 
-fun getTurno() = listOf(
+fun getTurnosInit() = listOf(
     Turno(
         id = 1L,
-        horario = Turno.TipoHorario.MAniANA
+        horario = Turno.TipoHorario.TEMPRANO,
+        personalizadora = getPersonalizadorasInit()[0],
+        trabajador = getTrabajadorInit()[0]
     )
 )
