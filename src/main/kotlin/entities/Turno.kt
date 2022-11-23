@@ -14,9 +14,9 @@ import org.jetbrains.exposed.dao.id.LongIdTable
 object TurnoTable : LongIdTable("turnos") {
     val uuid = uuid("uuid")
     val horario = varchar("tipo_horario", 7)
-    val encordadoraUuid = reference("encordadora_uuid", EncordadoraTable)
-    val personalizadora = reference("personalizadora_uuid", PersonalizadoraTable)
-    val trabajador = reference("trabajador_uuid", TrabajadorTable)
+    val encordadora = reference("encordadora_turno", EncordadoraTable).nullable()
+    val personalizadora = reference("personalizadora_turno", PersonalizadoraTable).nullable()
+    val trabajador = reference("trabajador_turno", TrabajadorTable)
 }
 
 class TurnoDao(id: EntityID<Long>) : LongEntity(id) {
@@ -24,7 +24,7 @@ class TurnoDao(id: EntityID<Long>) : LongEntity(id) {
 
     var uuid by TurnoTable.uuid
     var horario by TurnoTable.horario
-    var encordadoraUuid by EncordadoraDao referencedOn TurnoTable.encordadoraUuid
-    var personalizadora by PersonalizadoraDao referencedOn TurnoTable.personalizadora
+    var encordadora by EncordadoraDao optionalReferencedOn TurnoTable.encordadora
+    var personalizadora by PersonalizadoraDao optionalReferencedOn  TurnoTable.personalizadora
     var trabajador by TrabajadorDao referencedOn TurnoTable.trabajador
 }
