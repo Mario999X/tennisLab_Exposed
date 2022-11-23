@@ -132,9 +132,8 @@ fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
         uuidAdquisicion = getAdquisicionInit()[0],
-        uuidPersonalizacion = getPersonalizacionInit()[0],
         uuidEncordar = getEncordadoInit()[0],
-        precio = getAdquisicionInit()[0].precio + getPersonalizacionInit()[0].precio + getEncordadoInit()[0].precio
+        precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio
     )
 )
 
