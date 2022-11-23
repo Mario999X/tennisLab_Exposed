@@ -37,9 +37,9 @@ class TurnoRepositoryImpl(private val turnoDao: LongEntityClass<TurnoDao>) : Tur
         return turnoDao.new(entity.id) {
             uuid = entity.uuid
             horario = entity.horario.horario
-            encordadoraUuid = EncordadoraDao.findById(entity.id)!! // EncordadoraDao.findById(entity.encordadora!!.id) !!
-            personalizadora = PersonalizadoraDao.findById(entity.id)!!
-            trabajador = TrabajadorDao.findById(entity.id)!!
+            encordadora = entity.encordadora?.let { EncordadoraDao.findById(it.id) }
+            personalizadora = entity.personalizadora?.let { PersonalizadoraDao.findById(it.id) }
+            trabajador = TrabajadorDao.findById(entity.trabajador.id)!!
         }.fromTurnoDaoToTurno()
     }
 
@@ -48,9 +48,9 @@ class TurnoRepositoryImpl(private val turnoDao: LongEntityClass<TurnoDao>) : Tur
         return existe.apply {
             uuid = entity.uuid
             horario = entity.horario.horario
-            encordadoraUuid = EncordadoraDao.findById(entity.id)!!
-            personalizadora = PersonalizadoraDao.findById(entity.id)!!
-            trabajador = TrabajadorDao.findById(entity.id)!!
+            encordadora = entity.encordadora?.let { EncordadoraDao.findById(it.id) }
+            personalizadora = entity.personalizadora?.let { PersonalizadoraDao.findById(it.id) }
+            trabajador = TrabajadorDao.findById(entity.trabajador.id)!!
         }.fromTurnoDaoToTurno()
     }
 

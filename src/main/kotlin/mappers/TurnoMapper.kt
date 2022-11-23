@@ -8,8 +8,8 @@ fun TurnoDao.fromTurnoDaoToTurno(): Turno {
         id = id.value,
         uuid = uuid,
         horario = Turno.TipoHorario.from(horario),
-        encordadora = encordadoraUuid.fromEncordadoraDaoToEncordadora(),
-        personalizadora = personalizadora.fromPersonalizadoraDaoToPersonalizadora(),
+        encordadora = encordadora?.fromEncordadoraDaoToEncordadora(),
+        personalizadora = personalizadora?.fromPersonalizadoraDaoToPersonalizadora(),
         trabajador = trabajador.fromTrabajadorDaoToTrabajador()
     )
 }
