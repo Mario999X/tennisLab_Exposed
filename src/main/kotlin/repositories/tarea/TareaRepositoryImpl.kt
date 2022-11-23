@@ -36,9 +36,9 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         log.debug { "save($entity) - creando" }
         return tareaDao.new(entity.id) {
             uuid = entity.uuid
-            adquisicion = AdquisicionDao.findById(entity.id)!!
-            personalizar = PersonalizarDao.findById(entity.id)!!
-            encordar = EncordarDao.findById(entity.id)!!
+            adquisicion = entity.uuidAdquisicion?.let { AdquisicionDao.findById(it.id) }
+            personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
+            encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
             precio = entity.precio
         }.fromTareaDaoToTarea()
     }
@@ -47,9 +47,9 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
             uuid = entity.uuid
-            adquisicion = AdquisicionDao(id)
-            personalizar = PersonalizarDao(id)
-            encordar = EncordarDao(id)
+            adquisicion = entity.uuidAdquisicion?.let { AdquisicionDao.findById(it.id) }
+            personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
+            encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
             precio = entity.precio
         }.fromTareaDaoToTarea()
     }
