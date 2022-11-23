@@ -1,13 +1,12 @@
 package models
 
-
 import java.time.LocalDate
 import java.util.UUID
 
 data class Pedido(
     val id: Long,
     val uuid: UUID = UUID.randomUUID(),
-    val estado: Estado,
+    val estado: TipoEstado,
     val fechaEntrada: LocalDate,
     val fechaProgramada: LocalDate,
     val fechaSalida: LocalDate,
@@ -15,13 +14,13 @@ data class Pedido(
     val total: Double
 
 ) {
-    enum class Estado(val estado: String) {
+    enum class TipoEstado(val estado: String) {
         RECIBIDO("RECIBIDO"),
         PROCESANDO("PROCESANDO"),
         TERMINADO("TERMINADO");
 
         companion object {
-            fun from(estado: String): Estado {
+            fun from(estado: String): TipoEstado {
                 return when (estado.uppercase()) {
                     "RECIBIDO" -> RECIBIDO
                     "PROCESANDO" -> PROCESANDO
@@ -31,4 +30,10 @@ data class Pedido(
             }
         }
     }
+
+    override fun toString(): String {
+        return "Pedido(uuid=$uuid, estado=$estado, fechaEntrada=$fechaEntrada, fechaProgramada=$fechaProgramada, fechaSalida=$fechaSalida, tareas=$tareas, total=$total)"
+    }
+
+
 }

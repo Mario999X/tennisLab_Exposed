@@ -7,7 +7,7 @@ fun PedidoDao.fromPedidoDaoToPedido(): Pedido {
     return Pedido(
         id = id.value,
         uuid = uuid,
-        estado = Pedido.Estado.from(estado),
+        estado = Pedido.TipoEstado.from(estado),
         fechaEntrada = fechaEntrada,
         fechaProgramada = fechaProgramada,
         fechaSalida = fechaSalida,

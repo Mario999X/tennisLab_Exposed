@@ -12,6 +12,7 @@ object PedidoTable : LongIdTable("pedidos") {
     val fechaEntrada = date("fecha_entrada")
     val fechaProgramada = date("fecha_programada")
     val fechaSalida = date("fecha_salida")
+
     val total = double("total")
 }
 
