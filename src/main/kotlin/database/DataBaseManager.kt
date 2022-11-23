@@ -41,6 +41,7 @@ object DataBaseManager {
         if (config.jdbcSQL)
             addLogger(StdOutSqlLogger)
         SchemaUtils.create(
+            RaquetaTable,
             ClienteTable,
             ProductoTable,
             AdquisicionTable,
@@ -52,6 +53,7 @@ object DataBaseManager {
             EncordadoraTable,
             PersonalizadoraTable,
             TurnoTable
+
         )
         log.debug { "Tablas creadas" }
     }

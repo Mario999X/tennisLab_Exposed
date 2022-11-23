@@ -171,3 +171,18 @@ fun getTurnosInit() = listOf(
         trabajador = getTrabajadorInit()[0]
     )
 )
+
+fun getRaquetasInit() = listOf(
+    Raqueta(
+        id = 1L,
+        marca = "Wilson",
+        modelo = "Pure",
+        cliente = getClientesInit()[0]
+    ),
+    Raqueta(
+        id = 2L,
+        marca = "Prueba",
+        modelo = "Air",
+        cliente = getClientesInit()[0]
+    )
+)
