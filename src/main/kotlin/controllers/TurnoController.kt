@@ -19,17 +19,17 @@ class TurnoController(private val turnoRepository: TurnoRepository) {
     }
 
     fun updateTurno(turno: Turno) {
-        log.info { "Actualizado encordadora $turno" }
+        log.info { "Actualizado turno $turno" }
         turnoRepository.save(turno)
     }
 
     fun deleteTurno(it: Turno): Boolean {
-        log.info { "Borrando encordadoras $it" }
+        log.info { "Borrando turno $it" }
         return turnoRepository.delete(it)
     }
 
     fun createTurno(turno: Turno): Turno {
-        log.info { "Insertando nueva encordadora $turno" }
+        log.info { "Insertando nuevo turno $turno" }
         turnoRepository.save(turno)
         return turno
     }
