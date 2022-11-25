@@ -10,7 +10,6 @@ data class Pedido(
     val fechaEntrada: LocalDate,
     val fechaProgramada: LocalDate,
     val fechaSalida: LocalDate,
-    val tareas: List<Tarea>? = null,
     val total: Double
 
 ) {
@@ -32,7 +31,7 @@ data class Pedido(
     }
 
     override fun toString(): String {
-        return "Pedido(uuid=$uuid, estado=$estado, fechaEntrada=$fechaEntrada, fechaProgramada=$fechaProgramada, fechaSalida=$fechaSalida, tareas=$tareas, total=$total)"
+        return "Pedido(uuid=$uuid, estado=$estado, fechaEntrada=$fechaEntrada, fechaProgramada=$fechaProgramada, fechaSalida=$fechaSalida, total=$total)"
     }
 
 

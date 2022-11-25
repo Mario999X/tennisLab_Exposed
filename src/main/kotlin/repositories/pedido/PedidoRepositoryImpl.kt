@@ -45,9 +45,6 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            // Pide cambiarlo a var, pero si no no funciona, hay que revisar esta parte.
-            // Pero claro, no tiene una columna en la tabla...
-            //tareas = SizedCollection(entity.tareas.map { TareaDao.findById(it.id) })
             total = entity.total
         }.fromPedidoDaoToPedido()
     }
@@ -60,14 +57,7 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            //tareas = SizedCollection(entity.tareas.map { TareaDao.findById(it.id) })
             total = entity.total
         }.fromPedidoDaoToPedido()
     }
 }
-// COMENTARIO ORIGINAL en el dao (entities)
-/*
-*   Relación inversa donde soy referenciado (tenistas) referrersOn, solo si quiero acceder a ellos
-// Si le pongo val no dejo asignar tenistas desde aquí
-// 1 - M (1 raqueta - muchos tenistas que la usan)
-* */

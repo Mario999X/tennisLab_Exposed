@@ -1,9 +1,6 @@
 package repositories.tarea
 
-import entities.AdquisicionDao
-import entities.EncordarDao
-import entities.PersonalizarDao
-import entities.TareaDao
+import entities.*
 import mappers.fromTareaDaoToTarea
 import models.Tarea
 import mu.KotlinLogging
@@ -40,6 +37,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
             personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
             encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
             precio = entity.precio
+            pedidoId = PedidoDao.findById(entity.pedidoId.id)!!
         }.fromTareaDaoToTarea()
     }
 
@@ -51,6 +49,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
             personalizar = entity.uuidPersonalizacion?.let { PersonalizarDao.findById(it.id) }
             encordar = entity.uuidEncordar?.let { EncordarDao.findById(it.id) }
             precio = entity.precio
+            pedidoId = PedidoDao.findById(entity.pedidoId.id)!!
         }.fromTareaDaoToTarea()
     }
 

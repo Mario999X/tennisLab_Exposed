@@ -8,9 +8,10 @@ data class Tarea(
     val uuidAdquisicion: Adquisicion? = null,
     val uuidPersonalizacion: Personalizar? = null,
     val uuidEncordar: Encordar? = null,
-    val precio: Double
+    val precio: Double,
+    val pedidoId: Pedido
 ) {
     override fun toString(): String {
-        return "Tarea(uuid=$uuid, uuidAdquisicion=${uuidAdquisicion?.uuid}, uuidPersonalizar=${uuidPersonalizacion?.uuid}, uuidEncordar=${uuidEncordar?.uuid}, precio=$precio)"
+        return "Tarea(id=$id, uuid=$uuid, uuidAdquisicion=$uuidAdquisicion, uuidPersonalizacion=$uuidPersonalizacion, uuidEncordar=$uuidEncordar, precio=$precio, pedidoId=$pedidoId)"
     }
 }

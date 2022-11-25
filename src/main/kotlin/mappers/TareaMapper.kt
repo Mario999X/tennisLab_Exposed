@@ -10,6 +10,7 @@ fun TareaDao.fromTareaDaoToTarea(): Tarea {
         uuidAdquisicion = adquisicion?.fromAdquisicionDaoToAdquisicion(),
         uuidPersonalizacion = personalizar?.fromPersonalizarDaoToPersonalizar(),
         uuidEncordar = encordar?.fromEncordarDaoToEncordar(),
-        precio = precio
+        precio = precio,
+        pedidoId = pedidoId.fromPedidoDaoToPedido()
     )
 }

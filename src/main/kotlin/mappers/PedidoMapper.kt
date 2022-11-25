@@ -11,7 +11,6 @@ fun PedidoDao.fromPedidoDaoToPedido(): Pedido {
         fechaEntrada = fechaEntrada,
         fechaProgramada = fechaProgramada,
         fechaSalida = fechaSalida,
-        tareas = tareas.map { it.fromTareaDaoToTarea() },
         total = total
     )
 }
