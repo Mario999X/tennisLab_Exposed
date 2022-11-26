@@ -41,6 +41,7 @@ object DataBaseManager {
         if (config.jdbcSQL)
             addLogger(StdOutSqlLogger)
         SchemaUtils.create(
+            RaquetaTable,
             ClienteTable,
             ProductoTable,
             AdquisicionTable,

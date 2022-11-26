@@ -7,9 +7,10 @@ fun TareaDao.fromTareaDaoToTarea(): Tarea {
     return Tarea(
         id = id.value,
         uuid = uuid,
-        uuidAdquisicion = adquisicion?.fromAdquisicionDaoToAdquisicion(),
-        uuidPersonalizacion = personalizar?.fromPersonalizarDaoToPersonalizar(),
-        uuidEncordar = encordar?.fromEncordarDaoToEncordar(),
+        adquisicion = adquisicion?.fromAdquisicionDaoToAdquisicion(),
+        personalizar = personalizar?.fromPersonalizarDaoToPersonalizar(),
+        encordar = encordar?.fromEncordarDaoToEncordar(),
+        raqueta = raqueta?.fromRaquetaDaoToRaqueta(),
         precio = precio,
         pedidoId = pedidoId.fromPedidoDaoToPedido()
     )

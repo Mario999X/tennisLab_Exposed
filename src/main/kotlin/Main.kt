@@ -20,6 +20,7 @@ import repositories.pedido.PedidoRepositoryImpl
 import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.personalizar.PersonalizarRepositoryImpl
 import repositories.producto.ProductoRepositoryImpl
+import repositories.raqueta.RaquetaRepositoryImpl
 import repositories.tarea.TareaRepositoryImpl
 import repositories.turno.TurnoRepositoryImpl
 import repositories.usuario.ClienteRepositoryImpl
@@ -46,6 +47,8 @@ fun main() {
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
     val turnoController = TurnoController(TurnoRepositoryImpl(TurnoDao))
     val pedidosController = PedidoController(PedidoRepositoryImpl(PedidoDao))
+    val raquetaController = RaquetaController(RaquetaRepositoryImpl(RaquetaDao))
+
 
     //Inserción de datos
     getClientesInit().forEach { cliente ->
@@ -86,6 +89,9 @@ fun main() {
     getPedidosInit().forEach { pedidos ->
         pedidosController.createPedido(pedidos)
     }
+    getRaquetasInit().forEach { raqueta ->
+        raquetaController.createRaqueta(raqueta)
+    }
 
     getTareaInit().forEach { tarea ->
         tareaController.createTarea(tarea)
@@ -118,6 +124,7 @@ fun main() {
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
+
     // Encordados
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
@@ -126,11 +133,15 @@ fun main() {
     val pedidos = pedidosController.getPedidos()
     pedidos.forEach { println(it) }
 
+    //Raquetas
+    val raquetas = raquetaController.getRaquetas()
+    raquetas.forEach { println(it) }
+
     //Tareas
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }
 
-    // Turnos
+    //Turnos
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
 

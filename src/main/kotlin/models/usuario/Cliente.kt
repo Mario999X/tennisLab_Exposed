@@ -1,6 +1,6 @@
 package models.usuario
 
-import java.util.UUID
+import java.util.*
 
 class Cliente(
     id: Long,
@@ -11,7 +11,7 @@ class Cliente(
     password: String,
     val perfil: Perfil = Perfil.TENISTA
 
-) : Usuario(id, uuid, nombre, apellido, email, password){
+) : Usuario(id, uuid, nombre, apellido, email, password) {
     override fun toString(): String {
         return "Cliente(uuid=$uuid, nombre='$nombre', apellido='$apellido', email='$email', password='$password')"
     }

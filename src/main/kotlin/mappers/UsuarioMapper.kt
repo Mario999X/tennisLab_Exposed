@@ -15,7 +15,7 @@ fun ClienteDao.fromClienteDaoToCliente(): Cliente {
         nombre = nombre,
         apellido = apellido,
         email = email,
-        password = Cifrador.encryptString(password)
+        password = Cifrador.encryptString(password),
     )
 }
 

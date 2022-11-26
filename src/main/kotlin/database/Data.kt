@@ -136,6 +136,19 @@ fun getTareaInit() = listOf(
         uuidEncordar = getEncordadoInit()[0],
         precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio,
         pedidoId = getPedidosInit()[0]
+
+    ),
+    Tarea(
+        id = 2L,
+        encordar = getEncordadoInit()[0],
+        raqueta = getRaquetasInit()[0],
+        precio = getEncordadoInit()[0].precio
+    ),
+    Tarea(
+        id = 3L,
+        personalizar = getPersonalizacionInit()[0],
+        raqueta = getRaquetasInit()[1],
+        precio = getPersonalizacionInit()[0].precio
     )
 )
 
@@ -174,6 +187,7 @@ fun getTurnosInit() = listOf(
     )
 )
 
+
 fun getPedidosInit() = listOf(
     Pedido(
         id = 1L,
@@ -183,5 +197,18 @@ fun getPedidosInit() = listOf(
         fechaProgramada = LocalDate.now().plusDays(1),
         fechaSalida = LocalDate.now().plusDays(2),
         total = 100.0
+
+fun getRaquetasInit() = listOf(
+    Raqueta(
+        id = 1L,
+        marca = "Wilson",
+        modelo = "Pure",
+        cliente = getClientesInit()[0]
+    ),
+    Raqueta(
+        id = 2L,
+        marca = "Prueba",
+        modelo = "Air",
+        cliente = getClientesInit()[0]
     )
 )
