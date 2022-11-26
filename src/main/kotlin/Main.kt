@@ -16,6 +16,7 @@ import mu.KotlinLogging
 import repositories.adquisicion.AdquisicionRepositoryImpl
 import repositories.encordadora.EncordadoraRepositoryImpl
 import repositories.encordar.EncordarRepositoryImpl
+import repositories.pedido.PedidoRepositoryImpl
 import repositories.personalizadora.PersonalizadoraRepositoryImpl
 import repositories.personalizar.PersonalizarRepositoryImpl
 import repositories.producto.ProductoRepositoryImpl
@@ -45,7 +46,9 @@ fun main() {
     val personalizadorasController = PersonalizadoraController(PersonalizadoraRepositoryImpl(PersonalizadoraDao))
     val tareaController = TareaController(TareaRepositoryImpl(TareaDao))
     val turnoController = TurnoController(TurnoRepositoryImpl(TurnoDao))
+    val pedidosController = PedidoController(PedidoRepositoryImpl(PedidoDao))
     val raquetaController = RaquetaController(RaquetaRepositoryImpl(RaquetaDao))
+
 
     //Inserción de datos
     getClientesInit().forEach { cliente ->
@@ -83,6 +86,9 @@ fun main() {
         encordarController.createEncordado(encordado)
     }
 
+    getPedidosInit().forEach { pedidos ->
+        pedidosController.createPedido(pedidos)
+    }
     getRaquetasInit().forEach { raqueta ->
         raquetaController.createRaqueta(raqueta)
     }
@@ -118,9 +124,14 @@ fun main() {
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
-    //Encordados
+
+    // Encordados
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
+
+    // Pedidos
+    val pedidos = pedidosController.getPedidos()
+    pedidos.forEach { println(it) }
 
     //Raquetas
     val raquetas = raquetaController.getRaquetas()

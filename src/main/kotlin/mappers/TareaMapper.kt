@@ -11,6 +11,7 @@ fun TareaDao.fromTareaDaoToTarea(): Tarea {
         personalizar = personalizar?.fromPersonalizarDaoToPersonalizar(),
         encordar = encordar?.fromEncordarDaoToEncordar(),
         raqueta = raqueta?.fromRaquetaDaoToRaqueta(),
-        precio = precio
+        precio = precio,
+        pedidoId = pedidoId.fromPedidoDaoToPedido()
     )
 }

@@ -12,6 +12,7 @@ object TareaTable : LongIdTable("tareas") {
     val encordar = reference("encordar_uuid", EncordarTable).nullable()
     val raqueta = reference("raqueta_uuid", RaquetaTable).nullable()
     val precio = double("precio")
+    val pedidoId = reference("pedido_id", PedidoTable)
 }
 
 class TareaDao(id: EntityID<Long>) : LongEntity(id) {
@@ -23,4 +24,5 @@ class TareaDao(id: EntityID<Long>) : LongEntity(id) {
     var encordar by EncordarDao optionalReferencedOn TareaTable.encordar
     var raqueta by RaquetaDao optionalReferencedOn TareaTable.raqueta
     var precio by TareaTable.precio
+    var pedidoId by PedidoDao referencedOn TareaTable.pedidoId
 }

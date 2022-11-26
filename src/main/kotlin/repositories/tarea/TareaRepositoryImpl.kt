@@ -38,6 +38,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
             encordar = entity.encordar?.let { EncordarDao.findById(it.id) }
             raqueta = entity.raqueta?.let { RaquetaDao.findById(it.id) }
             precio = entity.precio
+            pedidoId = PedidoDao.findById(entity.pedidoId.id)!!
         }.fromTareaDaoToTarea()
     }
 
@@ -50,6 +51,7 @@ class TareaRepositoryImpl(private val tareaDao: LongEntityClass<TareaDao>) : Tar
             encordar = entity.encordar?.let { EncordarDao.findById(it.id) }
             raqueta = entity.raqueta?.let { RaquetaDao.findById(it.id) }
             precio = entity.precio
+            pedidoId = PedidoDao.findById(entity.pedidoId.id)!!
         }.fromTareaDaoToTarea()
     }
 

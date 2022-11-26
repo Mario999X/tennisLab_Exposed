@@ -14,7 +14,6 @@ data class Turno(
     val trabajador: Trabajador
 ) {
 
-
     enum class TipoHorario(val horario: String) {
         TEMPRANO("MAÑANA"),
         TARDE("TARDE");

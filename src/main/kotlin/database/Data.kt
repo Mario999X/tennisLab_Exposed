@@ -7,6 +7,7 @@ import models.maquina.Personalizadora
 import models.usuario.Cliente
 import models.usuario.Encargado
 import models.usuario.Trabajador
+import java.util.*
 
 fun getClientesInit() = listOf(
     Cliente(
@@ -131,8 +132,11 @@ fun getEncordadoInit() = listOf(
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
-        adquisicion = getAdquisicionInit()[0],
-        precio = getAdquisicionInit()[0].precio
+        uuidAdquisicion = getAdquisicionInit()[0],
+        uuidEncordar = getEncordadoInit()[0],
+        precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio,
+        pedidoId = getPedidosInit()[0]
+
     ),
     Tarea(
         id = 2L,
@@ -182,6 +186,17 @@ fun getTurnosInit() = listOf(
         trabajador = getTrabajadorInit()[0]
     )
 )
+
+
+fun getPedidosInit() = listOf(
+    Pedido(
+        id = 1L,
+        UUID.randomUUID(),
+        estado = Pedido.TipoEstado.RECIBIDO,
+        fechaEntrada = LocalDate.now(),
+        fechaProgramada = LocalDate.now().plusDays(1),
+        fechaSalida = LocalDate.now().plusDays(2),
+        total = 100.0
 
 fun getRaquetasInit() = listOf(
     Raqueta(

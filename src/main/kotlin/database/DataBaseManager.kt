@@ -52,8 +52,8 @@ object DataBaseManager {
             EncargadoTable,
             EncordadoraTable,
             PersonalizadoraTable,
-            TurnoTable
-
+            TurnoTable,
+            PedidoTable
         )
         log.debug { "Tablas creadas" }
     }
