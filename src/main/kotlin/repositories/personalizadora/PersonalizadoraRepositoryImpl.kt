@@ -30,13 +30,6 @@ class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityCl
         }
     }
 
-    override fun delete(entity: Personalizadora): Boolean = transaction {
-        val existe = personalizadoraDao.findById(entity.id) ?: return@transaction false
-        log.debug { "delete($entity) - borrando" }
-        existe.delete()
-        true
-    }
-
     private fun insert(entity: Personalizadora): Personalizadora {
         log.debug { "save($entity) - creando" }
         return personalizadoraDao.new(entity.id) {
@@ -65,4 +58,10 @@ class PersonalizadoraRepositoryImpl(private val personalizadoraDao: LongEntityCl
         }.fromPersonalizadoraDaoToPersonalizadora()
     }
 
+    override fun delete(entity: Personalizadora): Boolean = transaction {
+        val existe = personalizadoraDao.findById(entity.id) ?: return@transaction false
+        log.debug { "delete($entity) - borrando" }
+        existe.delete()
+        true
+    }
 }

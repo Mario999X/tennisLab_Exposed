@@ -30,13 +30,6 @@ class EncordadoraRepositoryImpl(private val encordadoraDao: LongEntityClass<Enco
         }
     }
 
-    override fun delete(entity: Encordadora): Boolean = transaction {
-        val existe = encordadoraDao.findById(entity.id) ?: return@transaction false
-        log.debug { "delete($entity) - borrando" }
-        existe.delete()
-        true
-    }
-
     private fun insert(entity: Encordadora): Encordadora {
         log.debug { "save($entity) - creando" }
         return encordadoraDao.new(entity.id) {
@@ -64,5 +57,12 @@ class EncordadoraRepositoryImpl(private val encordadoraDao: LongEntityClass<Enco
             tensionMin = entity.tensionMin
 
         }.fromEncordadoraDaoToEncordadora()
+    }
+
+    override fun delete(entity: Encordadora): Boolean = transaction {
+        val existe = encordadoraDao.findById(entity.id) ?: return@transaction false
+        log.debug { "delete($entity) - borrando" }
+        existe.delete()
+        true
     }
 }

@@ -104,7 +104,7 @@ fun getAdquisicionInit() = listOf(
     Adquisicion(
         id = 1L,
         cantidad = 1,
-        uuidProducto = getProductoInit()[0],
+        producto = getProductoInit()[0],
         precio = getProductoInit()[0].precio
     )
 )
@@ -132,8 +132,8 @@ fun getEncordadoInit() = listOf(
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
-        uuidAdquisicion = getAdquisicionInit()[0],
-        uuidEncordar = getEncordadoInit()[0],
+        adquisicion = getAdquisicionInit()[0],
+        encordar = getEncordadoInit()[0],
         precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio,
         pedidoId = getPedidosInit()[0]
 
@@ -142,13 +142,15 @@ fun getTareaInit() = listOf(
         id = 2L,
         encordar = getEncordadoInit()[0],
         raqueta = getRaquetasInit()[0],
-        precio = getEncordadoInit()[0].precio
+        precio = getEncordadoInit()[0].precio,
+        pedidoId = getPedidosInit()[0]
     ),
     Tarea(
         id = 3L,
         personalizar = getPersonalizacionInit()[0],
         raqueta = getRaquetasInit()[1],
-        precio = getPersonalizacionInit()[0].precio
+        precio = getPersonalizacionInit()[0].precio,
+        pedidoId = getPedidosInit()[0]
     )
 )
 
@@ -197,6 +199,8 @@ fun getPedidosInit() = listOf(
         fechaProgramada = LocalDate.now().plusDays(1),
         fechaSalida = LocalDate.now().plusDays(2),
         total = 100.0
+    )
+)
 
 fun getRaquetasInit() = listOf(
     Raqueta(

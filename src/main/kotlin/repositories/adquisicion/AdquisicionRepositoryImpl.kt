@@ -34,7 +34,7 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
         log.debug { "save($entity) - creando" }
         return adquisicionDao.new(entity.id) {
             uuid = entity.uuid
-            producto = ProductoDao.findById(entity.uuidProducto.id)!!
+            producto = ProductoDao.findById(entity.producto.id)!!
             cantidad = entity.cantidad
             precio = entity.precio
 
@@ -45,7 +45,7 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
             uuid = entity.uuid
-            producto = ProductoDao.findById(entity.uuidProducto.id)!!
+            producto = ProductoDao.findById(entity.producto.id)!!
             cantidad = entity.cantidad
             precio = entity.precio
         }.fromAdquisicionDaoToAdquisicion()

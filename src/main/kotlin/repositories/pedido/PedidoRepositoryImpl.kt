@@ -30,13 +30,6 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
         }
     }
 
-    override fun delete(entity: Pedido): Boolean = transaction {
-        val existe = pedidoDao.findById(entity.id) ?: return@transaction false
-        log.debug { "delete($entity) - borrando" }
-        existe.delete()
-        true
-    }
-
     private fun insert(entity: Pedido): Pedido {
         log.debug { "save($entity) - creando" }
         return pedidoDao.new(entity.id) {
@@ -59,5 +52,12 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaSalida = entity.fechaSalida
             total = entity.total
         }.fromPedidoDaoToPedido()
+    }
+
+    override fun delete(entity: Pedido): Boolean = transaction {
+        val existe = pedidoDao.findById(entity.id) ?: return@transaction false
+        log.debug { "delete($entity) - borrando" }
+        existe.delete()
+        true
     }
 }
