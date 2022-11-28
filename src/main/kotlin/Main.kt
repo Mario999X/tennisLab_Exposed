@@ -124,6 +124,9 @@ fun main() {
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
+    val encordadoras = encordadorasController.getEncordadoras()
+
+
 
     // Encordados
     val encordados = encordarController.getEncordados()
@@ -145,6 +148,9 @@ fun main() {
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
 
+    val encordaraUUID = encordadorasController.getEncordadorasByUuid(encordadoras[0].uuid)
+
+    println(encordaraUUID)
 }
 
 fun initDataBase() {
