@@ -1,18 +1,20 @@
 package models
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import models.usuario.Cliente
 import java.time.LocalDate
 import java.util.UUID
 
 data class Pedido(
     val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val estado: TipoEstado,
-    val fechaEntrada: LocalDate,
-    val fechaProgramada: LocalDate,
-    val fechaSalida: LocalDate,
-    val total: Double,
-    val cliente: Cliente
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val estado: TipoEstado,
+    @Expose val fechaEntrada: LocalDate,
+    @Expose val fechaProgramada: LocalDate,
+    @Expose val fechaSalida: LocalDate,
+    @Expose val total: Double,
+    @Expose val cliente: Cliente
 ) {
     enum class TipoEstado(val estado: String) {
         RECIBIDO("RECIBIDO"),
@@ -32,7 +34,9 @@ data class Pedido(
     }
 
     override fun toString(): String {
-        return "Pedido(uuid=$uuid, estado=$estado, fechaEntrada=$fechaEntrada, fechaProgramada=$fechaProgramada, fechaSalida=$fechaSalida, total=$total, clienteUUID=${cliente.uuid})"
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 
 }

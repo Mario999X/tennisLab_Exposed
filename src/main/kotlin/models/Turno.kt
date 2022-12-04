@@ -1,5 +1,7 @@
 package models
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import models.maquina.Encordadora
 import models.maquina.Personalizadora
 import models.usuario.Trabajador
@@ -7,11 +9,11 @@ import java.util.UUID
 
 data class Turno(
     val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val horario: TipoHorario,
-    var encordadora: Encordadora? = null,
-    var personalizadora: Personalizadora? = null,
-    val trabajador: Trabajador
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val horario: TipoHorario,
+    @Expose var encordadora: Encordadora? = null,
+    @Expose var personalizadora: Personalizadora? = null,
+    @Expose val trabajador: Trabajador
 ) {
 
     enum class TipoHorario(val horario: String) {
@@ -30,6 +32,8 @@ data class Turno(
     }
 
     override fun toString(): String {
-        return "Turno(uuid=$uuid, horario=$horario, encordadora=${encordadora?.uuid}, personalizadora=${personalizadora?.uuid}, trabajador=${trabajador.uuid})"
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 }

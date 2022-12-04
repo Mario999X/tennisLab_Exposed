@@ -36,6 +36,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.1")
     // Para manejar un pool de conexions mega rápido con HikariCP (no es obligatorio)
     implementation("com.zaxxer:HikariCP:5.0.1")
+    // gson
+    implementation("com.google.code.gson:gson:2.10")
 }
 
 tasks.test {

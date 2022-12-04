@@ -1,16 +1,20 @@
 package models
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import java.util.*
 
 data class Personalizar(
     val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val peso: Double,
-    val balance: Double,
-    val rigidez: Int,
-    val precio: Double = 60.0
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val peso: Double,
+    @Expose val balance: Double,
+    @Expose val rigidez: Int,
+    @Expose val precio: Double = 60.0
 ) {
     override fun toString(): String {
-        return "Personalizar(uuid=$uuid, peso=$peso, balance=$balance, rigidez=$rigidez, precio=$precio)"
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 }

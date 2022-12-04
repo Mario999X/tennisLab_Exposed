@@ -1,16 +1,20 @@
 package models
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import models.usuario.Cliente
 import java.util.*
 
 data class Raqueta(
     val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val marca: String,
-    val modelo: String,
-    val cliente: Cliente
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val marca: String,
+    @Expose val modelo: String,
+    @Expose val cliente: Cliente
 ) {
     override fun toString(): String {
-        return "Raqueta(uuid=$uuid, marca='$marca', modelo='$modelo', cliente=${cliente.uuid})"
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 }

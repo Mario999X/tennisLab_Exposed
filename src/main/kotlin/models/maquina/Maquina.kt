@@ -1,17 +1,14 @@
 package models.maquina
 
+import com.google.gson.annotations.Expose
 import java.time.LocalDate
 import java.util.*
 
 open class Maquina(
-    val id: Long,
-    val uuid: UUID,
-    val marca: String,
-    val modelo: String,
-    val fechaAdquisicion: LocalDate,
-    val numSerie: Long
-) {
-    override fun toString(): String {
-        return "Maquina(id=$id, uuid=$uuid, marca='$marca', modelo='$modelo', fechaAdquisicion=$fechaAdquisicion, numSerie=$numSerie)"
-    }
-}
+    @Expose val id: Long,
+    @Expose val uuid: UUID,
+    @Expose val marca: String,
+    @Expose val modelo: String,
+    @Expose val fechaAdquisicion: LocalDate,
+    @Expose val numSerie: Long
+)

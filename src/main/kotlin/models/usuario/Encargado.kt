@@ -1,5 +1,7 @@
 package models.usuario
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import java.util.UUID
 
 class Encargado(
@@ -9,9 +11,11 @@ class Encargado(
     apellido: String,
     email: String,
     password: String,
-    val perfil: Perfil = Perfil.ADMIN
+    @Expose val perfil: Perfil = Perfil.ADMIN
 ) : Usuario(id, uuid, nombre, apellido, email, password) {
     override fun toString(): String {
-        return "Encargado(uuid=$uuid, nombre='$nombre', apellido='$apellido', email='$email', password='$password')"
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 }

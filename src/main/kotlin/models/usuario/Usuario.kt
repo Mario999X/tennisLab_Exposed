@@ -1,13 +1,14 @@
 package models.usuario
 
+import com.google.gson.annotations.Expose
 import java.util.*
 
 open class Usuario(
     open val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val nombre: String,
-    val apellido: String,
-    val email: String,
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val nombre: String,
+    @Expose val apellido: String,
+    @Expose val email: String,
     val password: String
 ) {
     enum class Perfil(val rol: String) {

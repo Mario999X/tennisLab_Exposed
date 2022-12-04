@@ -1,5 +1,7 @@
 package models.maquina
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import java.time.LocalDate
 import java.util.UUID
 
@@ -10,12 +12,13 @@ class Encordadora(
     modelo: String,
     fechaAdquisicion: LocalDate,
     numSerie: Long,
-    val isManual: Boolean,
-    val tensionMax: Double,
-    val tensionMin: Double
+    @Expose val isManual: Boolean,
+    @Expose val tensionMax: Double,
+    @Expose val tensionMin: Double
 ) : Maquina(id, uuid, marca, modelo, fechaAdquisicion, numSerie) {
 
     override fun toString(): String {
-        return "Encordadora(isManual=$isManual, tensionMax=$tensionMax, tensionMin=$tensionMin) ${super.toString()}"
+        return GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 }

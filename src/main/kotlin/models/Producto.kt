@@ -1,15 +1,17 @@
 package models
 
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import java.util.UUID
 
 data class Producto(
     val id: Long,
-    val uuid: UUID = UUID.randomUUID(),
-    val tipo: Tipo,
-    val marca: String,
-    val modelo: String,
-    val stock: Int,
-    val precio: Double
+    @Expose val uuid: UUID = UUID.randomUUID(),
+    @Expose val tipo: Tipo,
+    @Expose val marca: String,
+    @Expose val modelo: String,
+    @Expose val stock: Int,
+    @Expose val precio: Double
 ) {
     enum class Tipo(val item: String) {
         RAQUETA("RAQUETA"),
@@ -26,6 +28,12 @@ data class Producto(
                 }
             }
         }
+    }
+
+    override fun toString(): String {
+        return GsonBuilder().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create().toJson(this)
     }
 
 }
