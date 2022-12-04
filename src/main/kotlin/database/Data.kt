@@ -135,22 +135,24 @@ fun getTareaInit() = listOf(
         adquisicion = getAdquisicionInit()[0],
         encordar = getEncordadoInit()[0],
         precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio,
-        pedidoId = getPedidosInit()[0]
-
+        pedido = getPedidosInit()[0],
+        trabajador = getTrabajadorInit()[0]
     ),
     Tarea(
         id = 2L,
         encordar = getEncordadoInit()[0],
         raqueta = getRaquetasInit()[0],
         precio = getEncordadoInit()[0].precio,
-        pedidoId = getPedidosInit()[0]
+        pedido = getPedidosInit()[0],
+        trabajador = getTrabajadorInit()[0]
     ),
     Tarea(
         id = 3L,
         personalizar = getPersonalizacionInit()[0],
         raqueta = getRaquetasInit()[1],
         precio = getPersonalizacionInit()[0].precio,
-        pedidoId = getPedidosInit()[0]
+        pedido = getPedidosInit()[0],
+        trabajador = getTrabajadorInit()[1]
     )
 )
 

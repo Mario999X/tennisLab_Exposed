@@ -1,5 +1,8 @@
 package entities
 
+import entities.usuario.TrabajadorDao
+import entities.usuario.TrabajadorTable
+import models.usuario.Trabajador
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -13,6 +16,7 @@ object TareaTable : LongIdTable("tareas") {
     val raqueta = reference("raqueta_uuid", RaquetaTable).nullable()
     val precio = double("precio")
     val pedidoId = reference("pedido_id", PedidoTable)
+    val trabajadorId = reference("trabajador_id", TrabajadorTable)
 }
 
 class TareaDao(id: EntityID<Long>) : LongEntity(id) {
@@ -25,4 +29,5 @@ class TareaDao(id: EntityID<Long>) : LongEntity(id) {
     var raqueta by RaquetaDao optionalReferencedOn TareaTable.raqueta
     var precio by TareaTable.precio
     var pedidoId by PedidoDao referencedOn TareaTable.pedidoId
+    var trabajadorId by TrabajadorDao referencedOn TareaTable.trabajadorId
 }

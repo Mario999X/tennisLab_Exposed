@@ -1,5 +1,6 @@
 package models
 
+import models.usuario.Trabajador
 import java.util.UUID
 
 data class Tarea(
@@ -10,9 +11,10 @@ data class Tarea(
     val encordar: Encordar? = null,
     val raqueta: Raqueta? = null,
     val precio: Double,
-    val pedidoId: Pedido
+    val pedido: Pedido,
+    val trabajador: Trabajador
 ) {
     override fun toString(): String {
-        return "Tarea(uuid=$uuid, uuidAdquisicion=${adquisicion?.uuid}, uuidPersonalizar=${personalizar?.uuid}, uuidEncordar=${encordar?.uuid}, raqueta=${raqueta?.uuid}, precio=$precio, pedidoId=${pedidoId.uuid})"
+        return "Tarea(uuid=$uuid, AdquisicionUUID=${adquisicion?.uuid}, PersonalizarUUID=${personalizar?.uuid}, EncordarUUID=${encordar?.uuid}, raqueta=${raqueta?.uuid}, precio=$precio, pedidoUUID=${pedido.uuid}, trabajadorUUID=${trabajador.uuid})"
     }
 }
