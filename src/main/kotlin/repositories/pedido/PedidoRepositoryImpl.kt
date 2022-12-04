@@ -1,6 +1,7 @@
 package repositories.pedido
 
 import entities.PedidoDao
+import entities.usuario.ClienteDao
 import mappers.fromPedidoDaoToPedido
 import models.Pedido
 import mu.KotlinLogging
@@ -39,6 +40,7 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
             total = entity.total
+            cliente = ClienteDao.findById(entity.cliente.id)!!
         }.fromPedidoDaoToPedido()
     }
 
@@ -51,6 +53,7 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
             total = entity.total
+            cliente = ClienteDao.findById(entity.cliente.id)!!
         }.fromPedidoDaoToPedido()
     }
 

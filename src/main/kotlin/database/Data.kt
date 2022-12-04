@@ -200,7 +200,8 @@ fun getPedidosInit() = listOf(
         fechaEntrada = LocalDate.now(),
         fechaProgramada = LocalDate.now().plusDays(1),
         fechaSalida = LocalDate.now().plusDays(2),
-        total = 100.0
+        total = 100.0,
+        cliente = getClientesInit()[0]
     )
 )
 

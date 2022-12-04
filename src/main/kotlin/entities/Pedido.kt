@@ -1,5 +1,7 @@
 package entities
 
+import entities.usuario.ClienteDao
+import entities.usuario.ClienteTable
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -13,9 +15,10 @@ object PedidoTable : LongIdTable("pedidos") {
     val fechaProgramada = date("fecha_programada")
     val fechaSalida = date("fecha_salida")
     val total = double("total")
+    val cliente = reference("cliente_id", ClienteTable)
 }
 
-class PedidoDao(id: EntityID<Long>) : LongEntity(id){
+class PedidoDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<PedidoDao>(PedidoTable)
 
     var uuid by PedidoTable.uuid
@@ -24,4 +27,5 @@ class PedidoDao(id: EntityID<Long>) : LongEntity(id){
     var fechaProgramada by PedidoTable.fechaProgramada
     var fechaSalida by PedidoTable.fechaSalida
     var total by PedidoTable.total
+    var cliente by ClienteDao referencedOn PedidoTable.cliente
 }

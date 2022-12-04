@@ -1,15 +1,22 @@
 package repositories.encordadora
 
 import entities.maquina.EncordadoraDao
+import entities.maquina.EncordadoraTable
 import mappers.fromEncordadoraDaoToEncordadora
 import models.maquina.Encordadora
 import mu.KotlinLogging
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.util.*
 
 private val log = KotlinLogging.logger { }
 
 class EncordadoraRepositoryImpl(private val encordadoraDao: LongEntityClass<EncordadoraDao>) : EncordadoraRepository {
+    override fun findByUuid(uuid: UUID): Encordadora? = transaction {
+        log.debug { "XD" }
+        val encordadoras = encordadoraDao.find { EncordadoraTable.uuid eq uuid }
+        return@transaction encordadoras.first().fromEncordadoraDaoToEncordadora()
+    }
 
     override fun findAll(): List<Encordadora> = transaction {
         log.debug { "findAll()" }
