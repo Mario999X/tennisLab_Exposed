@@ -12,6 +12,21 @@ class AdquisicionController(private val adquisicionRepository: AdquisicionReposi
         return adquisicionRepository.findAll()
     }
 
+    fun getAdquisicionById(id: Long): Adquisicion? {
+        log.info("Obteniendo adquisicion por id: $id")
+        return adquisicionRepository.findById(id)
+    }
+
+    fun updateAdquisicion(adquisicion: Adquisicion) {
+        log.info { "Actualizado adquisicion $adquisicion" }
+        adquisicionRepository.save(adquisicion)
+    }
+
+    fun deleteAdquisicion(it: Adquisicion): Boolean {
+        log.info { "Borrando adquisicion $it" }
+        return adquisicionRepository.delete(it)
+    }
+
     fun createAdquisicion(adquisicion: Adquisicion): Adquisicion {
         log.info("Insertando nueva adquisicion")
         adquisicionRepository.save(adquisicion)

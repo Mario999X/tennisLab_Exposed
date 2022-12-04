@@ -12,6 +12,21 @@ class EncordarController(private val encordarRepository: EncordarRepository) {
         return encordarRepository.findAll()
     }
 
+    fun getEncordadoById(id: Long): Encordar? {
+        log.info("Obteniendo encordado por id: $id")
+        return encordarRepository.findById(id)
+    }
+
+    fun updateEncordado(encordado: Encordar) {
+        log.info("Actualizado encordado $encordado")
+        encordarRepository.save(encordado)
+    }
+
+    fun deleteEncordado(it: Encordar): Boolean {
+        log.info("Borrando encordado $it")
+        return encordarRepository.delete(it)
+    }
+
     fun createEncordado(encordado: Encordar): Encordar {
         log.info("Insertando nuevo encordado")
         encordarRepository.save(encordado)
