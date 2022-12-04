@@ -12,6 +12,21 @@ class RaquetaController(private val raquetaRepository: RaquetaRepository) {
         return raquetaRepository.findAll()
     }
 
+    fun getRaquetaById(id: Long): Raqueta? {
+        log.info { "Obteniendo raqueta por ID $id" }
+        return raquetaRepository.findById(id)
+    }
+
+    fun updateRaqueta(raqueta: Raqueta) {
+        log.info { "Actualizada raqueta $raqueta"}
+        raquetaRepository.save(raqueta)
+    }
+
+    fun deleteRaqueta(it: Raqueta) : Boolean {
+        log.info { "Borrando raqueta $it"}
+        return raquetaRepository.delete(it)
+    }
+
     fun createRaqueta(raqueta: Raqueta): Raqueta {
         log.info("Insertando nueva raqueta")
         raquetaRepository.save(raqueta)
