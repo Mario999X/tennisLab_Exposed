@@ -11,6 +11,7 @@ fun PedidoDao.fromPedidoDaoToPedido(): Pedido {
         fechaEntrada = fechaEntrada,
         fechaProgramada = fechaProgramada,
         fechaSalida = fechaSalida,
-        total = total
+        total = total,
+        cliente = cliente.fromClienteDaoToCliente()
     )
 }
