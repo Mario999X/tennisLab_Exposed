@@ -11,11 +11,12 @@ class Personalizadora(
     marca: String,
     modelo: String,
     fechaAdquisicion: LocalDate,
+    fechaJson: String = fechaAdquisicion.toString(),
     numSerie: Long,
-    @Expose val maniobrabilidad: Boolean,
-    @Expose val balance: Boolean,
-    @Expose val rigidez: Boolean
-) : Maquina(id, uuid, marca, modelo, fechaAdquisicion, numSerie) {
+    @Expose var maniobrabilidad: Boolean,
+    @Expose var balance: Boolean,
+    @Expose var rigidez: Boolean
+) : Maquina(id, uuid, marca, modelo, fechaAdquisicion, fechaJson, numSerie) {
     override fun toString(): String {
         return GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation()
             .create().toJson(this)

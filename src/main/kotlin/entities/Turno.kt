@@ -10,12 +10,13 @@ import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
+import org.jetbrains.exposed.sql.ReferenceOption
 
 object TurnoTable : LongIdTable("turnos") {
     val uuid = uuid("uuid")
     val horario = varchar("tipo_horario", 7)
-    val encordadora = reference("encordadora_turno", EncordadoraTable).nullable()
-    val personalizadora = reference("personalizadora_turno", PersonalizadoraTable).nullable()
+    val encordadora = reference("encordadora_turno", EncordadoraTable, ReferenceOption.SET_NULL).nullable()
+    val personalizadora = reference("personalizadora_turno", PersonalizadoraTable, ReferenceOption.SET_NULL).nullable()
     val trabajador = reference("trabajador_turno", TrabajadorTable)
 }
 
