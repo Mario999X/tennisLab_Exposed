@@ -2,7 +2,6 @@ package entities
 
 import entities.usuario.TrabajadorDao
 import entities.usuario.TrabajadorTable
-import models.usuario.Trabajador
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -14,7 +13,7 @@ object TareaTable : LongIdTable("tareas") {
     val adquisicion = reference("adquisicion_uuid", AdquisicionTable, onDelete = ReferenceOption.SET_NULL).nullable()
     val personalizar = reference("personalizar_uuid", PersonalizarTable, onDelete = ReferenceOption.SET_NULL).nullable()
     val encordar = reference("encordar_uuid", EncordarTable, onDelete = ReferenceOption.SET_NULL).nullable()
-    val raqueta = reference("raqueta_uuid", RaquetaTable).nullable()
+    val raqueta = reference("raqueta_uuid", RaquetaTable, ReferenceOption.SET_NULL).nullable()
     val precio = double("precio")
     val pedidoId = reference("pedido_id", PedidoTable)
     val trabajadorId = reference("trabajador_id", TrabajadorTable)

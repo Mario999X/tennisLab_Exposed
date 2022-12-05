@@ -6,7 +6,7 @@ import java.util.*
 open class Usuario(
     open val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
-    @Expose val nombre: String,
+    @Expose var nombre: String,
     @Expose val apellido: String,
     @Expose val email: String,
     val password: String
