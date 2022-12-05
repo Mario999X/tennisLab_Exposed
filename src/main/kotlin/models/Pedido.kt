@@ -10,9 +10,12 @@ data class Pedido(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
     @Expose val estado: TipoEstado,
-    @Expose val fechaEntrada: LocalDate,
-    @Expose val fechaProgramada: LocalDate,
-    @Expose val fechaSalida: LocalDate,
+    val fechaEntrada: LocalDate,
+    @Expose var fechaJsonEntrada: String = fechaEntrada.toString(),
+    var fechaProgramada: LocalDate,
+    @Expose var fechaJsonProgramada: String = fechaProgramada.toString(),
+    var fechaSalida: LocalDate,
+    @Expose var fechaJsonSalida: String = fechaSalida.toString(),
     @Expose val total: Double,
     @Expose val cliente: Cliente
 ) {
