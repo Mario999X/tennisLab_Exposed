@@ -13,7 +13,7 @@ data class Turno(
     @Expose val horario: TipoHorario,
     @Expose var encordadora: Encordadora? = null,
     @Expose var personalizadora: Personalizadora? = null,
-    @Expose val trabajador: Trabajador
+    @Expose var trabajador: Trabajador
 ) {
 
     enum class TipoHorario(val horario: String) {

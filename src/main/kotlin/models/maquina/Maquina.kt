@@ -7,8 +7,9 @@ import java.util.*
 open class Maquina(
     @Expose val id: Long,
     @Expose val uuid: UUID,
-    @Expose val marca: String,
-    @Expose val modelo: String,
-    @Expose val fechaAdquisicion: LocalDate,
-    @Expose val numSerie: Long
+    @Expose var marca: String,
+    @Expose var modelo: String,
+    var fechaAdquisicion: LocalDate,
+    @Expose var fechaJson: String,
+    @Expose var numSerie: Long
 )

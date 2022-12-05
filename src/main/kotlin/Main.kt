@@ -139,8 +139,6 @@ fun main() {
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
-    val encordadoras = encordadorasController.getEncordadoras()
-
     // Encordados
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
@@ -161,9 +159,61 @@ fun main() {
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
 
-    val encordaraUUID = encordadorasController.getEncordadorasByUuid(encordadoras[0].uuid)
+    // OPERACIONES CON ENCORDADORAS
+    // Encontrar encordadora con ID
+    val encordadora = encordadorasController.getEncordadoraById(1) // encordadoras[0].id
+    println(encordadora)
 
-    println(encordaraUUID)
+    // Actualizado de encordadora
+    encordadora?.let {
+        it.marca = "MGS"
+        encordadorasController.updateEncordadora(it)
+    }
+    println(encordadora)
+
+    // Borrado de encordadora - NO turno
+    encordadora?.let {
+        encordadorasController.deleteEncordadora(it)
+    }
+    println(encordadorasController.getEncordadoras())
+
+
+    // OPERACIONES CON PERSONALIZADORAS
+    // Encontrar personalizadora con ID
+    val personalizadora = personalizadorasController.getPersonalizadoraById(1) // personalizadoras[0].id
+    println(personalizadora)
+
+    // Actualizado de personalizadora
+    personalizadora?.let {
+        it.marca = "KOTO"
+        personalizadorasController.updatePersonalizadora(it)
+    }
+    println(personalizadora)
+
+    // Borrado de personalizadora - SI turno
+    personalizadora?.let {
+        personalizadorasController.deletePersonalizadora(it)
+    }
+    println(personalizadorasController.getPersonalizadoras())
+
+    // OPERACIONES CON TURNOS
+    // Encontrar turno con ID
+    val turno = turnoController.getTurnoById(1)
+    println(turno)
+
+    // Actualizado de turno
+    turno?.let {
+        it.trabajador = trabajadorController.getTrabajadores()[2]
+        turnoController.updateTurno(it)
+    }
+    println(turno)
+
+    // Borrado de turno
+    turno?.let {
+        turnoController.deleteTurno(it)
+    }
+    println(turnoController.getTurnos())
+
 }
 
 fun initDataBase() {
