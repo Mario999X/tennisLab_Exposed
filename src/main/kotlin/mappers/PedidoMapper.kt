@@ -9,8 +9,11 @@ fun PedidoDao.fromPedidoDaoToPedido(): Pedido {
         uuid = uuid,
         estado = Pedido.TipoEstado.from(estado),
         fechaEntrada = fechaEntrada,
+        fechaJsonEntrada = fechaEntrada.toString(),
         fechaProgramada = fechaProgramada,
+        fechaJsonProgramada = fechaProgramada.toString(),
         fechaSalida = fechaSalida,
+        fechaJsonSalida = fechaSalida.toString(),
         total = total,
         cliente = cliente.fromClienteDaoToCliente()
     )
