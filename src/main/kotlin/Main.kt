@@ -12,6 +12,7 @@ import entities.maquina.PersonalizadoraDao
 import entities.usuario.ClienteDao
 import entities.usuario.EncargadoDao
 import entities.usuario.TrabajadorDao
+import models.Pedido
 import mu.KotlinLogging
 import repositories.adquisicion.AdquisicionRepositoryImpl
 import repositories.encordadora.EncordadoraRepositoryImpl
@@ -109,8 +110,24 @@ fun main() {
     val trabajadores = trabajadorController.getTrabajadores()
     trabajadores.forEach { println(it) }
 
+    //Encargado
+    //FindAll
     val encargados = encargadoController.getEncargados()
     encargados.forEach { println(it) }
+
+    //Update
+    val encargado = encargadoController.getEncargadoById(1)
+    encargado?.let {
+        it.nombre = "Jesus"
+        encargadoController.updateEncargado(it)
+    }
+
+    //FindById
+    encargadoController.getEncargadoById(1)?.let { println(it) }
+
+    //Delete
+    encargado?.let { if (encargadoController.deleteEncargado(it)) println(it) }
+    println(encargadoController.getEncargados())
 
     //Productos
     //FindAll
@@ -189,20 +206,46 @@ fun main() {
     println(encordarController.getEncordados())
 
     // Pedidos
+    //FindAll
     val pedidos = pedidosController.getPedidos()
     pedidos.forEach { println(it) }
+
+    //Update
+    val pedido = pedidosController.getPedidoById(2)
+    pedido?.let {
+        it.estado = Pedido.TipoEstado.TERMINADO
+        pedidosController.updatePedido(it)
+    }
+
+    //FindById
+    pedidosController.getPedidoById(2)?.let { println(it) }
+
+    //Delete
+    pedido?.let { if (pedidosController.deletePedido(it)) println(it) }
+    println(pedidosController.getPedidos())
 
     //Raquetas
     val raquetas = raquetaController.getRaquetas()
     raquetas.forEach { println(it) }
 
     //Tareas
+    //FindAll
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }
 
-    //Turnos
-    val turnos = turnoController.getTurnos()
-    turnos.forEach { println(it) }
+    //Update
+    val tarea = tareaController.getTareaById(1)
+    tarea?.let {
+        it.precio += 100.0
+        tareaController.updateTarea(it)
+    }
+
+    //FindById
+    tareaController.getTareaById(2)?.let { println(it) }
+
+    //Delete
+    tarea?.let { if (tareaController.deleteTarea(it)) println(it) }
+    println(tareaController.getTareas())
 
     // OPERACIONES CON ENCORDADORAS
     // Encontrar encordadora con ID
@@ -242,6 +285,10 @@ fun main() {
     println(personalizadorasController.getPersonalizadoras())
 
     // OPERACIONES CON TURNOS
+    //FindAll
+    val turnos = turnoController.getTurnos()
+    turnos.forEach { println(it) }
+
     // Encontrar turno con ID
     val turno = turnoController.getTurnoById(1)
     println(turno)

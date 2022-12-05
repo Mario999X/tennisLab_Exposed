@@ -14,7 +14,6 @@ fun PedidoDao.fromPedidoDaoToPedido(): Pedido {
         fechaJsonProgramada = fechaProgramada.toString(),
         fechaSalida = fechaSalida,
         fechaJsonSalida = fechaSalida.toString(),
-        total = total,
         cliente = cliente.fromClienteDaoToCliente()
     )
 }
