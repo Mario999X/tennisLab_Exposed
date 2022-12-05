@@ -9,8 +9,8 @@ data class Raqueta(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
     @Expose val marca: String,
-    @Expose val modelo: String,
-    @Expose val cliente: Cliente
+    @Expose var modelo: String,
+    @Expose var cliente: Cliente
 ) {
     override fun toString(): String {
         return GsonBuilder().setPrettyPrinting()

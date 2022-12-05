@@ -51,7 +51,8 @@ fun main() {
     val raquetaController = RaquetaController(RaquetaRepositoryImpl(RaquetaDao))
 
 
-    //Inserción de datos
+    // --- INSERCION DE DATOS ---
+
     getClientesInit().forEach { cliente ->
         clienteController.createCliente(cliente)
     }
@@ -90,6 +91,7 @@ fun main() {
     getPedidosInit().forEach { pedidos ->
         pedidosController.createPedido(pedidos)
     }
+
     getRaquetasInit().forEach { raqueta ->
         raquetaController.createRaqueta(raqueta)
     }
@@ -102,10 +104,7 @@ fun main() {
         turnoController.createTurno(turno)
     }
 
-    //CRUD
-    //Usuarios
-    val clientes = clienteController.getClientes()
-    clientes.forEach { println(it) }
+    // --- CRUD ---
 
     val trabajadores = trabajadorController.getTrabajadores()
     trabajadores.forEach { println(it) }
@@ -224,9 +223,6 @@ fun main() {
     pedido?.let { if (pedidosController.deletePedido(it)) println(it) }
     println(pedidosController.getPedidos())
 
-    //Raquetas
-    val raquetas = raquetaController.getRaquetas()
-    raquetas.forEach { println(it) }
 
     //Tareas
     //FindAll
@@ -247,7 +243,11 @@ fun main() {
     tarea?.let { if (tareaController.deleteTarea(it)) println(it) }
     println(tareaController.getTareas())
 
-    // OPERACIONES CON ENCORDADORAS
+    // -- OPERACIONES CON ENCORDADORAS --
+    // Encordadoras
+    val encordadoras = encordadorasController.getEncordadoras()
+    encordadoras.forEach { println(it) }
+
     // Encontrar encordadora con ID
     val encordadora = encordadorasController.getEncordadoraById(1) // encordadoras[0].id
     println(encordadora)
@@ -266,7 +266,11 @@ fun main() {
     println(encordadorasController.getEncordadoras())
 
 
-    // OPERACIONES CON PERSONALIZADORAS
+    // -- OPERACIONES CON PERSONALIZADORAS --
+    // Personalizadoras
+    val personalizadoras = personalizadorasController.getPersonalizadoras()
+    personalizadoras.forEach { println(it) }
+
     // Encontrar personalizadora con ID
     val personalizadora = personalizadorasController.getPersonalizadoraById(1) // personalizadoras[0].id
     println(personalizadora)
@@ -284,7 +288,8 @@ fun main() {
     }
     println(personalizadorasController.getPersonalizadoras())
 
-    // OPERACIONES CON TURNOS
+    // -- OPERACIONES CON TURNOS --
+    //Turnos
     //FindAll
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
@@ -306,7 +311,49 @@ fun main() {
     }
     println(turnoController.getTurnos())
 
+
+    // -- OPERACIONES CON RAQUETA --
+    //Raquetas
+    val raquetas = raquetaController.getRaquetas()
+    raquetas.forEach { println(it) }
+
+    // Encontrar raqueta con ID
+    val raqueta = raquetaController.getRaquetaById(1)
+    println(raqueta)
+
+    // Actualizado de raqueta
+    raqueta?.let {
+        it.modelo = "Paldea"
+        raquetaController.updateRaqueta(it)
+    }
+    println(raqueta)
+
+    // Borrando raqueta
+    raqueta?.let {
+        raquetaController.deleteRaqueta(it)
+    }
+    println(raquetaController.getRaquetas())
+
+    // -- OPERACIONES CON USUARIOS --
+    // Clientes
+    val clientes = clienteController.getClientes()
+    clientes.forEach { println(it) }
+
+    // Encontrar cliente con ID
+    val cliente = clienteController.getClienteById(1)
+    println(cliente)
+
+    // Actualizado de cliente
+    cliente?.let {
+        cliente.nombre = "Kratos"
+        clienteController.updateCliente(it)
+    }
+    println(cliente)
+
+    // Borrado de un cliente - NO ELIMINACION
+
 }
+
 
 fun initDataBase() {
     val path =

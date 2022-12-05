@@ -6,12 +6,13 @@ import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
+import org.jetbrains.exposed.sql.ReferenceOption
 
 object RaquetaTable : LongIdTable("raquetas") {
     val uuid = uuid("uuid")
     val marca = varchar("marca", 50)
     val modelo = varchar("modelo", 50)
-    val cliente = reference("cliente_uuid", ClienteTable)
+    val cliente = reference("cliente_uuid", ClienteTable, onDelete = ReferenceOption.RESTRICT)
 }
 
 class RaquetaDao(id: EntityID<Long>) : LongEntity(id) {
