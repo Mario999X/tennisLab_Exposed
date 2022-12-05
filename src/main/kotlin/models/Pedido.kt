@@ -9,14 +9,13 @@ import java.util.UUID
 data class Pedido(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
-    @Expose val estado: TipoEstado,
+    @Expose var estado: TipoEstado,
     val fechaEntrada: LocalDate,
     @Expose var fechaJsonEntrada: String = fechaEntrada.toString(),
     var fechaProgramada: LocalDate,
     @Expose var fechaJsonProgramada: String = fechaProgramada.toString(),
     var fechaSalida: LocalDate,
     @Expose var fechaJsonSalida: String = fechaSalida.toString(),
-    @Expose val total: Double,
     @Expose val cliente: Cliente
 ) {
     enum class TipoEstado(val estado: String) {

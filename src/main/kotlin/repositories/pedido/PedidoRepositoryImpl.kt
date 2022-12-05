@@ -39,7 +39,6 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            total = entity.total
             cliente = ClienteDao.findById(entity.cliente.id)!!
         }.fromPedidoDaoToPedido()
     }
@@ -52,7 +51,6 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            total = entity.total
             cliente = ClienteDao.findById(entity.cliente.id)!!
         }.fromPedidoDaoToPedido()
     }

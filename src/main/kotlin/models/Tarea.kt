@@ -12,13 +12,10 @@ data class Tarea(
     @Expose val personalizar: Personalizar? = null,
     @Expose val encordar: Encordar? = null,
     @Expose val raqueta: Raqueta? = null,
-    @Expose val precio: Double,
+    @Expose var precio: Double,
     @Expose val pedido: Pedido,
     @Expose val trabajador: Trabajador
 ) {
-    //    override fun toString(): String {
-//        return "Tarea(uuid=$uuid, AdquisicionUUID=${adquisicion?.uuid}, PersonalizarUUID=${personalizar?.uuid}, EncordarUUID=${encordar?.uuid}, raqueta=${raqueta?.uuid}, precio=$precio, pedidoUUID=${pedido.uuid}, trabajadorUUID=${trabajador.uuid})"
-//    }
     override fun toString(): String {
         return GsonBuilder().setPrettyPrinting()
             .excludeFieldsWithoutExposeAnnotation()

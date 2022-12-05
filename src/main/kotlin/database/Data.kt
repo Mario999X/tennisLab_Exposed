@@ -1,13 +1,12 @@
 package database
 
-import entities.AdquisicionTable.cantidad
 import models.*
-import java.time.LocalDate
 import models.maquina.Encordadora
 import models.maquina.Personalizadora
 import models.usuario.Cliente
 import models.usuario.Encargado
 import models.usuario.Trabajador
+import java.time.LocalDate
 import java.util.*
 
 fun getClientesInit() = listOf(
@@ -206,9 +205,17 @@ fun getPedidosInit() = listOf(
         fechaEntrada = LocalDate.now(),
         fechaProgramada = LocalDate.now().plusDays(1),
         fechaSalida = LocalDate.now().plusDays(2),
-        total = 100.0,
         cliente = getClientesInit()[0]
-    )
+    ),
+    Pedido(
+        id = 1L,
+        UUID.randomUUID(),
+        estado = Pedido.TipoEstado.PROCESANDO,
+        fechaEntrada = LocalDate.now(),
+        fechaProgramada = LocalDate.now().plusDays(1),
+        fechaSalida = LocalDate.now().plusDays(2),
+        cliente = getClientesInit()[1]
+    ),
 )
 
 fun getRaquetasInit() = listOf(

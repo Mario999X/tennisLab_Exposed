@@ -14,7 +14,6 @@ object PedidoTable : LongIdTable("pedidos") {
     val fechaEntrada = date("fecha_entrada")
     val fechaProgramada = date("fecha_programada")
     val fechaSalida = date("fecha_salida")
-    val total = double("total")
     val cliente = reference("cliente_id", ClienteTable)
 }
 
@@ -26,6 +25,5 @@ class PedidoDao(id: EntityID<Long>) : LongEntity(id) {
     var fechaEntrada by PedidoTable.fechaEntrada
     var fechaProgramada by PedidoTable.fechaProgramada
     var fechaSalida by PedidoTable.fechaSalida
-    var total by PedidoTable.total
     var cliente by ClienteDao referencedOn PedidoTable.cliente
 }
