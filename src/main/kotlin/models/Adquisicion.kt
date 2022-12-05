@@ -7,10 +7,10 @@ import java.util.*
 data class Adquisicion(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
-    @Expose val cantidad: Int,
+    @Expose var cantidad: Int,
     @Expose val producto: Producto?,
-    @Expose val descripcion: String? = producto?.modelo,
-    @Expose val precio: Double? = producto?.precio
+    @Expose var descripcion: String? = producto?.modelo,
+    @Expose var precio: Double? = producto?.precio
 ){
     override fun toString(): String {
         return GsonBuilder().setPrettyPrinting()

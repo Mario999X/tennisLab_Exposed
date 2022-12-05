@@ -1,5 +1,6 @@
 package database
 
+import entities.AdquisicionTable.cantidad
 import models.*
 import java.time.LocalDate
 import models.maquina.Encordadora
@@ -105,8 +106,13 @@ fun getAdquisicionInit() = listOf(
         id = 1L,
         cantidad = 1,
         producto = getProductoInit()[0],
-        precio = getProductoInit()[0].precio
-    )
+    ),
+    Adquisicion(
+        id = 2L,
+        cantidad = 1,
+        producto = getProductoInit()[1],
+    ),
+
 )
 
 fun getPersonalizacionInit() = listOf(

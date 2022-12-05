@@ -7,7 +7,7 @@ import java.util.*
 data class Personalizar(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
-    @Expose val peso: Double,
+    @Expose var peso: Double,
     @Expose val balance: Double,
     @Expose val rigidez: Int,
     @Expose val precio: Double = 60.0

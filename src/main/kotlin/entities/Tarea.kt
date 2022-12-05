@@ -7,12 +7,13 @@ import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
+import org.jetbrains.exposed.sql.ReferenceOption
 
 object TareaTable : LongIdTable("tareas") {
     val uuid = uuid("uuid")
-    val adquisicion = reference("adquisicion_uuid", AdquisicionTable).nullable()
-    val personalizar = reference("personalizar_uuid", PersonalizarTable).nullable()
-    val encordar = reference("encordar_uuid", EncordarTable).nullable()
+    val adquisicion = reference("adquisicion_uuid", AdquisicionTable, onDelete = ReferenceOption.SET_NULL).nullable()
+    val personalizar = reference("personalizar_uuid", PersonalizarTable, onDelete = ReferenceOption.SET_NULL).nullable()
+    val encordar = reference("encordar_uuid", EncordarTable, onDelete = ReferenceOption.SET_NULL).nullable()
     val raqueta = reference("raqueta_uuid", RaquetaTable).nullable()
     val precio = double("precio")
     val pedidoId = reference("pedido_id", PedidoTable)

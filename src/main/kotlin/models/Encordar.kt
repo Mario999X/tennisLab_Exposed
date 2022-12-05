@@ -11,7 +11,7 @@ data class Encordar(
     @Expose val cordajeHorizontal: String,
     @Expose val tensionCuerdasVerticales: Double,
     @Expose val cordajeVertical: String,
-    @Expose val nudos: Int,
+    @Expose var nudos: Int,
     @Expose val precio: Double = 15.0
 ){
     override fun toString(): String {

@@ -37,7 +37,7 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
             producto = entity.producto?.let { ProductoDao.findById(it.id) }!!
             descripcion = entity.descripcion!!
             cantidad = entity.cantidad
-            precio = entity.precio!!
+            precio = entity.precio!! * cantidad
 
         }.fromAdquisicionDaoToAdquisicion()
     }
@@ -49,7 +49,7 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
             producto = entity.producto?.let { ProductoDao.findById(it.id) }!!
             descripcion = entity.descripcion!!
             cantidad = entity.cantidad
-            precio = entity.precio!!
+            precio = entity.precio!! * cantidad
         }.fromAdquisicionDaoToAdquisicion()
     }
 

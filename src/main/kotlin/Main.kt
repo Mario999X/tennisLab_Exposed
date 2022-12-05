@@ -129,19 +129,64 @@ fun main() {
 
     //Delete
     producto?.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
-    productos.forEach { println(it) }
+    println(productosController.getProductos())
 
     //Adquisiciones
+    //FindAll
     val adquisiciones = adquisicionController.getAdquisiciones()
     adquisiciones.forEach { println(it) }
 
+    //Update
+    val adquisicion = adquisicionController.getAdquisicionById(2)
+    adquisicion?.let {
+        it.cantidad += 1
+        adquisicionController.updateAdquisicion(it)
+    }
+
+    //FindById
+    adquisicionController.getAdquisicionById(2)?.let { println(it) }
+
+    //Delete
+    adquisicion?.let { if (adquisicionController.deleteAdquisicion(it)) println(it) }
+    println(adquisicionController.getAdquisiciones())
+
     //Personalizaciones
+    //FindAll
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
+    //Update
+    val personalizacion = personalizarController.getPersonalizadoById(1)
+    personalizacion?.let {
+        it.peso += 0.43
+        personalizarController.updatePersonalizado(it)
+    }
+
+    //FindById
+    personalizarController.getPersonalizadoById(1)?.let { println(it) }
+
+    //Delete
+    personalizacion?.let { if (personalizarController.deletePersonalizado(it)) println(it) }
+    println(personalizarController.getPersonalizaciones())
+
     // Encordados
+    //FindAll
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
+
+    //Update
+    val encordado = encordarController.getEncordadoById(1)
+    encordado?.let {
+        it.nudos -= 1
+        encordarController.updateEncordado(it)
+    }
+
+    //FindById
+    encordarController.getEncordadoById(1)?.let { println(it) }
+
+    //Delete
+    encordado?.let { if (encordarController.deleteEncordado(it)) println(it) }
+    println(encordarController.getEncordados())
 
     // Pedidos
     val pedidos = pedidosController.getPedidos()
