@@ -4,10 +4,12 @@ import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
+import org.jetbrains.exposed.sql.ReferenceOption
 
 object AdquisicionTable : LongIdTable("adquisiciones") {
     val uuid = uuid("uuid")
-    val producto = reference("producto_uuid", ProductoTable)
+    val producto = reference("producto_uuid", ProductoTable, onDelete = ReferenceOption.SET_NULL).nullable()
+    val descripcion = varchar("descripcion", 50)
     val cantidad = integer("cantidad")
     val precio = double("precio")
 }
@@ -16,7 +18,8 @@ class AdquisicionDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<AdquisicionDao>(AdquisicionTable)
 
     var uuid by AdquisicionTable.uuid
-    var producto by ProductoDao referencedOn AdquisicionTable.producto
+    var producto by ProductoDao optionalReferencedOn AdquisicionTable.producto
+    var descripcion by AdquisicionTable.descripcion
     var cantidad by AdquisicionTable.cantidad
     var precio by AdquisicionTable.precio
 }

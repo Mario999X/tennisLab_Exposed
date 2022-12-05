@@ -11,7 +11,7 @@ data class Producto(
     @Expose val marca: String,
     @Expose val modelo: String,
     @Expose val stock: Int,
-    @Expose val precio: Double
+    @Expose var precio: Double
 ) {
     enum class Tipo(val item: String) {
         RAQUETA("RAQUETA"),

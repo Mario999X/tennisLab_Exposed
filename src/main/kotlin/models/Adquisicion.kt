@@ -8,8 +8,9 @@ data class Adquisicion(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
     @Expose val cantidad: Int,
-    @Expose val producto: Producto,
-    @Expose val precio: Double = producto.precio
+    @Expose val producto: Producto?,
+    @Expose val descripcion: String? = producto?.modelo,
+    @Expose val precio: Double? = producto?.precio
 ){
     override fun toString(): String {
         return GsonBuilder().setPrettyPrinting()

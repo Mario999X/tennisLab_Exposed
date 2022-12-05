@@ -113,7 +113,22 @@ fun main() {
     encargados.forEach { println(it) }
 
     //Productos
+    //FindAll
     val productos = productosController.getProductos()
+    productos.forEach { println(it) }
+
+    //Update
+    val producto = productosController.getProductoById(1)
+    producto?.let {
+        it.precio += 10.05
+        productosController.updateProducto(it)
+    }
+
+    //FindById
+    productosController.getProductoById(1)?.let { println(it) }
+
+    //Delete
+    producto?.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
     productos.forEach { println(it) }
 
     //Adquisiciones
@@ -125,8 +140,6 @@ fun main() {
     personalizaciones.forEach { println(it) }
 
     val encordadoras = encordadorasController.getEncordadoras()
-
-
 
     // Encordados
     val encordados = encordarController.getEncordados()

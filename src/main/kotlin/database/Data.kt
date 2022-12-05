@@ -134,7 +134,7 @@ fun getTareaInit() = listOf(
         id = 1L,
         adquisicion = getAdquisicionInit()[0],
         encordar = getEncordadoInit()[0],
-        precio = getAdquisicionInit()[0].precio + getEncordadoInit()[0].precio,
+        precio = getAdquisicionInit()[0].precio!! + getEncordadoInit()[0].precio,
         pedido = getPedidosInit()[0],
         trabajador = getTrabajadorInit()[0]
     ),
