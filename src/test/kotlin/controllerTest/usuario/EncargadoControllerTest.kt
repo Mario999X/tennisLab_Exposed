@@ -58,7 +58,7 @@ internal class EncargadoControllerTest {
     fun getEncargadoByIdNotExists() {
         every { encargadoRepository.findById(encargado.id) } returns null
 
-        val res = assertThrows<GenericException> { encargadoController.getEncargadoById(encargado.id)}
+        val res = assertThrows<GenericException> { encargadoController.getEncargadoById(encargado.id) }
 
         assert(res.message == "Encargado con id ${encargado.id} no encontrado")
 
@@ -76,7 +76,7 @@ internal class EncargadoControllerTest {
 
         val res = encargado.nombre
 
-        assert(res == encargado.nombre)
+        assert(res == "Pepe")
 
         verify { encargadoRepository.save(encargado) }
     }

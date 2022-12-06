@@ -10,7 +10,7 @@ import java.util.UUID
 data class Turno(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
-    @Expose val horario: TipoHorario,
+    @Expose var horario: TipoHorario,
     @Expose var encordadora: Encordadora? = null,
     @Expose var personalizadora: Personalizadora? = null,
     @Expose var trabajador: Trabajador

@@ -1,5 +1,6 @@
 package controllers.usuario
 
+import exceptions.GenericException
 import models.usuario.Trabajador
 import mu.KotlinLogging
 import repositories.usuario.TrabajadorRepository
@@ -12,9 +13,9 @@ class TrabajadorController(private val trabajadorRepository: TrabajadorRepositor
         return trabajadorRepository.findAll()
     }
 
-    fun getTrabajadorById(id: Long): Trabajador? {
+    fun getTrabajadorById(id: Long): Trabajador {
         log.info { "Obteniendo trabajador por ID $id" }
-        return trabajadorRepository.findById(id)
+        return trabajadorRepository.findById(id) ?: throw GenericException("Trabajador con id $id no encontrado")
     }
 
     fun updateTrabajador(trabajador: Trabajador) {
@@ -24,7 +25,10 @@ class TrabajadorController(private val trabajadorRepository: TrabajadorRepositor
 
     fun deleteTrabajador(it: Trabajador): Boolean {
         log.info { "Borrando trabajador $it" }
-        return trabajadorRepository.delete(it)
+        return if (trabajadorRepository.delete(it))
+            true
+        else
+            throw GenericException("Trabajador con id ${it.id} no encontrado")
     }
 
     fun createTrabajador(trabajador: Trabajador): Trabajador {

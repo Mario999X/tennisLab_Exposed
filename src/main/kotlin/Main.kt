@@ -116,7 +116,7 @@ fun main() {
     println(cliente)
 
     // Update
-    cliente?.let {
+    cliente.let {
         cliente.nombre = "Kratos"
         clienteController.updateCliente(it)
     }
@@ -133,7 +133,7 @@ fun main() {
     println(trabajador)
 
     // Update
-    trabajador?.let {
+    trabajador.let {
         trabajador.nombre = "L"
         trabajadorController.updateTrabajador(it)
     }
@@ -307,14 +307,14 @@ fun main() {
     println(personalizadora)
 
     // Update
-    personalizadora?.let {
+    personalizadora.let {
         it.marca = "KOTO"
         personalizadorasController.updatePersonalizadora(it)
     }
     println(personalizadora)
 
     // Delete - SI turno
-    personalizadora?.let {
+    personalizadora.let {
         personalizadorasController.deletePersonalizadora(it)
     }
     println(personalizadorasController.getPersonalizadoras())
@@ -329,14 +329,14 @@ fun main() {
     println(turno)
 
     // Update
-    turno?.let {
+    turno.let {
         it.trabajador = trabajadorController.getTrabajadores()[2]
         turnoController.updateTurno(it)
     }
     println(turno)
 
     // Delete
-    turno?.let {
+    turno.let {
         turnoController.deleteTurno(it)
     }
     println(turnoController.getTurnos())
@@ -352,14 +352,14 @@ fun main() {
     println(raqueta)
 
     // Update
-    raqueta?.let {
+    raqueta.let {
         it.modelo = "Paldea"
         raquetaController.updateRaqueta(it)
     }
     println(raqueta)
 
     // Delete
-    raqueta?.let {
+    raqueta.let {
         raquetaController.deleteRaqueta(it)
     }
     println(raquetaController.getRaquetas())
