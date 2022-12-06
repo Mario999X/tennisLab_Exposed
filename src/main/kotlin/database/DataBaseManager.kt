@@ -10,10 +10,7 @@ import entities.usuario.ClienteTable
 import entities.usuario.EncargadoTable
 import entities.usuario.TrabajadorTable
 import mu.KotlinLogging
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.addLogger
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
@@ -57,5 +54,54 @@ object DataBaseManager {
         )
         log.debug { "Tablas creadas" }
     }
+
+    fun dropTablas() = transaction {
+        log.debug { "Eliminando las tablas" }
+        if (config.jdbcSQL)
+            addLogger(StdOutSqlLogger)
+        SchemaUtils.drop(
+            RaquetaTable,
+            ClienteTable,
+            ProductoTable,
+            AdquisicionTable,
+            PersonalizarTable,
+            EncordarTable,
+            TareaTable,
+            TrabajadorTable,
+            EncargadoTable,
+            EncordadoraTable,
+            PersonalizadoraTable,
+            TurnoTable,
+            PedidoTable
+        )
+        log.debug { "Tablas eliminadas" }
+    }
+
+    fun clearTablas() = transaction {
+        log.debug { "Limpiando tablas" }
+        if (config.jdbcSQL)
+            addLogger(StdOutSqlLogger)
+        val tablas = arrayOf(
+            RaquetaTable,
+            ClienteTable,
+            ProductoTable,
+            AdquisicionTable,
+            PersonalizarTable,
+            EncordarTable,
+            TareaTable,
+            TrabajadorTable,
+            EncargadoTable,
+            EncordadoraTable,
+            PersonalizadoraTable,
+            TurnoTable,
+            PedidoTable
+        )
+
+        tablas.forEach {
+            it.deleteAll()
+        }
+        log.debug { "Tablas limpias" }
+    }
+
 }
 
