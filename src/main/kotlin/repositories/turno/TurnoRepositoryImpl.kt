@@ -4,6 +4,7 @@ import entities.TurnoDao
 import entities.maquina.EncordadoraDao
 import entities.maquina.PersonalizadoraDao
 import entities.usuario.TrabajadorDao
+import exceptions.GenericException
 import mappers.fromTurnoDaoToTurno
 import models.Turno
 import mu.KotlinLogging
@@ -39,7 +40,8 @@ class TurnoRepositoryImpl(private val turnoDao: LongEntityClass<TurnoDao>) : Tur
             horario = entity.horario.horario
             encordadora = entity.encordadora?.let { EncordadoraDao.findById(it.id) }
             personalizadora = entity.personalizadora?.let { PersonalizadoraDao.findById(it.id) }
-            trabajador = TrabajadorDao.findById(entity.trabajador.id)!!
+            trabajador = TrabajadorDao.findById(entity.trabajador.id)
+                ?: throw GenericException("Trabajador no encontrado")
         }.fromTurnoDaoToTurno()
     }
 
@@ -50,7 +52,8 @@ class TurnoRepositoryImpl(private val turnoDao: LongEntityClass<TurnoDao>) : Tur
             horario = entity.horario.horario
             encordadora = entity.encordadora?.let { EncordadoraDao.findById(it.id) }
             personalizadora = entity.personalizadora?.let { PersonalizadoraDao.findById(it.id) }
-            trabajador = TrabajadorDao.findById(entity.trabajador.id)!!
+            trabajador = TrabajadorDao.findById(entity.trabajador.id)
+                ?: throw GenericException("Trabajador no encontrado")
         }.fromTurnoDaoToTurno()
     }
 

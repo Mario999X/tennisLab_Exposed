@@ -2,6 +2,7 @@ package repositories.pedido
 
 import entities.PedidoDao
 import entities.usuario.ClienteDao
+import exceptions.GenericException
 import mappers.fromPedidoDaoToPedido
 import models.Pedido
 import mu.KotlinLogging
@@ -39,7 +40,8 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            cliente = ClienteDao.findById(entity.cliente.id)!!
+            cliente = ClienteDao.findById(entity.cliente.id)
+                ?: throw GenericException("Cliente no encontrado")
         }.fromPedidoDaoToPedido()
     }
 
@@ -51,7 +53,8 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
             fechaEntrada = entity.fechaEntrada
             fechaProgramada = entity.fechaProgramada
             fechaSalida = entity.fechaSalida
-            cliente = ClienteDao.findById(entity.cliente.id)!!
+            cliente = ClienteDao.findById(entity.cliente.id)
+                ?: throw GenericException("Cliente no encontrado")
         }.fromPedidoDaoToPedido()
     }
 
