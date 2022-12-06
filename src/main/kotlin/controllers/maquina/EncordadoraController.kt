@@ -1,5 +1,6 @@
 package controllers.maquina
 
+import exceptions.GenericException
 import models.maquina.Encordadora
 import mu.KotlinLogging
 import repositories.encordadora.EncordadoraRepository
@@ -14,9 +15,9 @@ class EncordadoraController(private val encordadoraRepository: EncordadoraReposi
         return encordadoraRepository.findAll()
     }
 
-    fun getEncordadoraById(id: Long): Encordadora? {
+    fun getEncordadoraById(id: Long): Encordadora {
         log.info { "Obteniendo encordadora por ID $id" }
-        return encordadoraRepository.findById(id)
+        return encordadoraRepository.findById(id) ?: throw GenericException("Encordadora con id $id no encontrada")
     }
 
     fun getEncordadorasByUuid(uuid: UUID): Encordadora? {
@@ -31,7 +32,10 @@ class EncordadoraController(private val encordadoraRepository: EncordadoraReposi
 
     fun deleteEncordadora(it: Encordadora): Boolean {
         log.info { "Borrando encordadoras $it" }
-        return encordadoraRepository.delete(it)
+        return if (encordadoraRepository.delete(it))
+            true
+        else
+            throw GenericException("Encordadora con id ${it.id} no encontrada")
     }
 
     fun createEncordadora(encordadora: Encordadora): Encordadora {

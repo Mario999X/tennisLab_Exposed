@@ -147,16 +147,16 @@ fun main() {
 
     // Update
     val encargado = encargadoController.getEncargadoById(1)
-    encargado?.let {
+    encargado.let {
         it.nombre = "Jesus"
         encargadoController.updateEncargado(it)
     }
 
     // FindById
-    encargadoController.getEncargadoById(1)?.let { println(it) }
+    println(encargadoController.getEncargadoById(1))
 
     // Delete
-    encargado?.let { if (encargadoController.deleteEncargado(it)) println(it) }
+    encargado.let { if (encargadoController.deleteEncargado(it)) println(it) }
     println(encargadoController.getEncargados())
 
     // -- PRODUCTOS --
@@ -284,14 +284,14 @@ fun main() {
     println(encordadora)
 
     // Update
-    encordadora?.let {
+    encordadora.let {
         it.marca = "MGS"
         encordadorasController.updateEncordadora(it)
     }
     println(encordadora)
 
     // Delete - NO turno
-    encordadora?.let {
+    encordadora.let {
         encordadorasController.deleteEncordadora(it)
     }
     println(encordadorasController.getEncordadoras())
