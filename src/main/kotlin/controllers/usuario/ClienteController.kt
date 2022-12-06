@@ -1,5 +1,6 @@
 package controllers.usuario
 
+import exceptions.GenericException
 import models.usuario.Cliente
 import mu.KotlinLogging
 import repositories.usuario.ClienteRepository
@@ -12,9 +13,9 @@ class ClienteController(private val clienteRepository: ClienteRepository) {
         return clienteRepository.findAll()
     }
 
-    fun getClienteById(id: Long): Cliente? {
+    fun getClienteById(id: Long): Cliente {
         log.info { "Obteniendo cliente por ID $id" }
-        return clienteRepository.findById(id)
+        return clienteRepository.findById(id) ?: throw GenericException("Cliente con id $id no encontrado")
     }
 
     fun updateCliente(cliente: Cliente) {
@@ -24,7 +25,10 @@ class ClienteController(private val clienteRepository: ClienteRepository) {
 
     fun deleteCliente(it: Cliente): Boolean {
         log.info { "Borrando cliente $it" }
-        return clienteRepository.delete(it)
+        return if (clienteRepository.delete(it))
+            true
+        else
+            throw GenericException("Cliente con id ${it.id} no encontrado")
     }
 
     fun createCliente(cliente: Cliente): Cliente {

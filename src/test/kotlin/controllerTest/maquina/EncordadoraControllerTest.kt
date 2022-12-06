@@ -11,13 +11,11 @@ import models.maquina.Encordadora
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import repositories.encordadora.EncordadoraRepository
 import java.time.LocalDate
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 internal class EncordadoraControllerTest {
 
@@ -57,7 +55,7 @@ internal class EncordadoraControllerTest {
 
         assert(res == encordadora)
 
-        verify { encordadoraRepository.findById(encordadora.id) }
+        verify(exactly = 1) { encordadoraRepository.findById(encordadora.id) }
     }
 
     @Test
@@ -68,7 +66,7 @@ internal class EncordadoraControllerTest {
 
         assert(res.message == "Encordadora con id ${encordadora.id} no encontrada")
 
-        verify { encordadoraRepository.findById(encordadora.id) }
+        verify(exactly = 1) { encordadoraRepository.findById(encordadora.id) }
     }
 
     @Test
@@ -82,9 +80,9 @@ internal class EncordadoraControllerTest {
 
         val res = encordadora.isManual
 
-        assert(res == encordadora.isManual)
+        assert(!res)
 
-        verify { encordadoraRepository.save(encordadora) }
+        verify(exactly = 1) { encordadoraRepository.save(encordadora) }
     }
 
     @Test
@@ -95,28 +93,28 @@ internal class EncordadoraControllerTest {
 
         assert(res)
 
-        verify { encordadoraRepository.delete(encordadora) }
+        verify(exactly = 1) { encordadoraRepository.delete(encordadora) }
     }
 
     @Test
     fun deleteEncordadoraNotExists() {
         every { encordadoraRepository.delete(encordadora) } returns false
 
-        val res = assertThrows<GenericException>{ encordadoraController.deleteEncordadora(encordadora) }
+        val res = assertThrows<GenericException> { encordadoraController.deleteEncordadora(encordadora) }
 
         assert(res.message == "Encordadora con id ${encordadora.id} no encontrada")
 
-        verify { encordadoraRepository.delete(encordadora) }
+        verify(exactly = 1) { encordadoraRepository.delete(encordadora) }
     }
 
     @Test
     fun createEncordadora() {
-        every { encordadoraRepository.save(encordadora)} returns encordadora
+        every { encordadoraRepository.save(encordadora) } returns encordadora
 
         val res = encordadoraController.createEncordadora(encordadora)
 
         assert(res == encordadora)
 
-        verify { encordadoraRepository.save(encordadora) }
+        verify(exactly = 1) { encordadoraRepository.save(encordadora) }
     }
 }
