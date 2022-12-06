@@ -8,6 +8,7 @@ import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.verify
 import models.Producto
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.sql.SizedCollection
@@ -69,18 +70,52 @@ internal class ProductoRepositoryImplTest {
 
     @Test
     fun findAll() {
-        every { productoDao.all() }
+        every { productoDao.all() } returns SizedCollection(listOf(daoItem))
+        val res = productoRepository.findAll()
+        assertAll(
+            { assert(1 == res.size) },
+            { assert(res[0] == producto) }
+        )
+        verify { productoDao.all() }
     }
 
     @Test
     fun findById() {
+        every { productoDao.findById(producto.id) } returns daoItem
+        val res = productoRepository.findById(producto.id)
+        assert(res == producto)
+        verify { productoDao.findById(producto.id) }
+    }
+
+    @Test
+    fun findByIdNoExiste() {
+        every { productoDao.findById(producto.id) } returns null
+        val res = productoRepository.findById(producto.id)
+        assert(res == null)
+        verify { productoDao.findById(producto.id) }
     }
 
     @Test
     fun save() {
+        every { productoDao.findById(producto.id) } returns daoItem
+        val res = productoRepository.save(producto)
+        assert(res == producto)
+        verify { productoDao.findById(producto.id) }
     }
 
     @Test
     fun delete() {
+        every { productoDao.findById(producto.id) } returns daoItem
+        val res = productoRepository.delete(producto)
+        assert(res)
+        verify { productoDao.findById(producto.id) }
+    }
+
+    @Test
+    fun deleteNoExiste() {
+        every { productoDao.findById(producto.id) } returns null
+        val res = productoRepository.delete(producto)
+        assert(!res)
+        verify { productoDao.findById(producto.id) }
     }
 }
