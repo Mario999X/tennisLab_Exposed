@@ -208,7 +208,7 @@ fun getPedidosInit() = listOf(
         cliente = getClientesInit()[0]
     ),
     Pedido(
-        id = 1L,
+        id = 2L,
         UUID.randomUUID(),
         estado = Pedido.TipoEstado.PROCESANDO,
         fechaEntrada = LocalDate.now(),
