@@ -4,10 +4,13 @@ import config.ConfigProject
 import database.DataBaseManager
 import entities.ProductoDao
 import io.mockk.MockKAnnotations
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import models.Producto
+import org.jetbrains.exposed.dao.LongEntityClass
+import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Test
@@ -24,7 +27,7 @@ import repositories.producto.ProductoRepository
 internal class ProductoRepositoryImplTest {
 
     @MockK
-    lateinit var productoDao: ProductoDao
+    lateinit var productoDao: LongEntityClass<ProductoDao>
 
     @InjectMockKs
     lateinit var productoRepository: ProductoRepository
@@ -65,6 +68,7 @@ internal class ProductoRepositoryImplTest {
 
     @Test
     fun findAll() {
+        every { productoDao.all() }
     }
 
     @Test
