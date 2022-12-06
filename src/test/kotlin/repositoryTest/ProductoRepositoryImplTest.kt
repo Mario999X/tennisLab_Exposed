@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
 import repositories.producto.ProductoRepository
+import repositories.producto.ProductoRepositoryImpl
 
 @ExtendWith(MockKExtension::class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -30,7 +31,7 @@ internal class ProductoRepositoryImplTest {
     lateinit var productoDao: LongEntityClass<ProductoDao>
 
     @InjectMockKs
-    lateinit var productoRepository: ProductoRepository
+    lateinit var productoRepository: ProductoRepositoryImpl
 
     private val producto =
         Producto(id = 1L, tipo = Producto.Tipo.COMPLEMENTO, marca = "Wilson", modelo = "Pure", stock = 3, precio = 17.9)
