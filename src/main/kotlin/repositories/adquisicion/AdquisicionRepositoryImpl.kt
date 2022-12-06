@@ -2,6 +2,7 @@ package repositories.adquisicion
 
 import entities.AdquisicionDao
 import entities.ProductoDao
+import exceptions.GenericException
 import mappers.fromAdquisicionDaoToAdquisicion
 import models.Adquisicion
 import mu.KotlinLogging
@@ -34,11 +35,12 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
         log.debug { "save($entity) - creando" }
         return adquisicionDao.new(entity.id) {
             uuid = entity.uuid
-            producto = entity.producto?.let { ProductoDao.findById(it.id) }!!
-            descripcion = entity.descripcion!!
+            producto = entity.producto?.let { ProductoDao.findById(it.id) }
+                ?: throw GenericException("No existe producto")
+            descripcion = entity.descripcion
+                ?: throw GenericException("Error con la descripcion")
             cantidad = entity.cantidad
             precio = entity.precio!! * cantidad
-
         }.fromAdquisicionDaoToAdquisicion()
     }
 
@@ -46,8 +48,10 @@ class AdquisicionRepositoryImpl(private val adquisicionDao: LongEntityClass<Adqu
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
             uuid = entity.uuid
-            producto = entity.producto?.let { ProductoDao.findById(it.id) }!!
-            descripcion = entity.descripcion!!
+            producto = entity.producto?.let { ProductoDao.findById(it.id) }
+                ?: throw GenericException("No existe producto")
+            descripcion = entity.descripcion
+                ?: throw GenericException("Error con la descripcion")
             cantidad = entity.cantidad
             precio = entity.precio!! * cantidad
         }.fromAdquisicionDaoToAdquisicion()

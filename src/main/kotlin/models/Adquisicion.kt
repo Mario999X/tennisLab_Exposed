@@ -8,7 +8,7 @@ data class Adquisicion(
     val id: Long,
     @Expose val uuid: UUID = UUID.randomUUID(),
     @Expose var cantidad: Int,
-    @Expose val producto: Producto?,
+    @Expose var producto: Producto?,
     @Expose var descripcion: String? = producto?.modelo,
     @Expose var precio: Double? = producto?.precio
 ){

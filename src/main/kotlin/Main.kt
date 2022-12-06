@@ -106,251 +106,263 @@ fun main() {
 
     // --- CRUD ---
 
+    // -- CLIENTES --
+    // FindAll
+    val clientes = clienteController.getClientes()
+    clientes.forEach { println(it) }
+
+    // FindById
+    val cliente = clienteController.getClienteById(1)
+    println(cliente)
+
+    // Update
+    cliente?.let {
+        cliente.nombre = "Kratos"
+        clienteController.updateCliente(it)
+    }
+    println(cliente)
+    // - Delete de un cliente - NO ELIMINACION -
+
+    // -- TRABAJADORES --
+    // FindAll
     val trabajadores = trabajadorController.getTrabajadores()
     trabajadores.forEach { println(it) }
 
-    //Encargado
-    //FindAll
+    // FindById
+    val trabajador = trabajadorController.getTrabajadorById(1)
+    println(trabajador)
+
+    // Update
+    trabajador?.let {
+        trabajador.nombre = "L"
+        trabajadorController.updateTrabajador(it)
+    }
+    println(trabajador)
+    // Delete - NO ELIMINACION -
+
+    // -- ENCARGADOS --
+    // FindAll
     val encargados = encargadoController.getEncargados()
     encargados.forEach { println(it) }
 
-    //Update
+    // Update
     val encargado = encargadoController.getEncargadoById(1)
     encargado?.let {
         it.nombre = "Jesus"
         encargadoController.updateEncargado(it)
     }
 
-    //FindById
+    // FindById
     encargadoController.getEncargadoById(1)?.let { println(it) }
 
-    //Delete
+    // Delete
     encargado?.let { if (encargadoController.deleteEncargado(it)) println(it) }
     println(encargadoController.getEncargados())
 
-    //Productos
-    //FindAll
+    // -- PRODUCTOS --
+    // FindAll
     val productos = productosController.getProductos()
     productos.forEach { println(it) }
 
-    //Update
+    // Update
     val producto = productosController.getProductoById(1)
     producto?.let {
         it.precio += 10.05
         productosController.updateProducto(it)
     }
 
-    //FindById
+    // FindById
     productosController.getProductoById(1)?.let { println(it) }
 
-    //Delete
+    // Delete
     producto?.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
     println(productosController.getProductos())
 
-    //Adquisiciones
-    //FindAll
+    // -- ADQUISICIONES --
+    // FindAll
     val adquisiciones = adquisicionController.getAdquisiciones()
     adquisiciones.forEach { println(it) }
 
-    //Update
+    // Update
     val adquisicion = adquisicionController.getAdquisicionById(2)
     adquisicion?.let {
         it.cantidad += 1
         adquisicionController.updateAdquisicion(it)
     }
 
-    //FindById
+    // FindById
     adquisicionController.getAdquisicionById(2)?.let { println(it) }
 
-    //Delete
+    // Delete
     adquisicion?.let { if (adquisicionController.deleteAdquisicion(it)) println(it) }
     println(adquisicionController.getAdquisiciones())
 
-    //Personalizaciones
-    //FindAll
+    // -- PERSONALIZACIONES --
+    // FindAll
     val personalizaciones = personalizarController.getPersonalizaciones()
     personalizaciones.forEach { println(it) }
 
-    //Update
+    // Update
     val personalizacion = personalizarController.getPersonalizadoById(1)
     personalizacion?.let {
         it.peso += 0.43
         personalizarController.updatePersonalizado(it)
     }
 
-    //FindById
+    // FindById
     personalizarController.getPersonalizadoById(1)?.let { println(it) }
 
-    //Delete
+    // Delete
     personalizacion?.let { if (personalizarController.deletePersonalizado(it)) println(it) }
     println(personalizarController.getPersonalizaciones())
 
-    // Encordados
-    //FindAll
+    // -- ENCORDADOS --
+    // FindAll
     val encordados = encordarController.getEncordados()
     encordados.forEach { println(it) }
 
-    //Update
+    // Update
     val encordado = encordarController.getEncordadoById(1)
     encordado?.let {
         it.nudos -= 1
         encordarController.updateEncordado(it)
     }
 
-    //FindById
+    // FindById
     encordarController.getEncordadoById(1)?.let { println(it) }
 
-    //Delete
+    // Delete
     encordado?.let { if (encordarController.deleteEncordado(it)) println(it) }
     println(encordarController.getEncordados())
 
-    // Pedidos
-    //FindAll
+    // -- PEDIDOS --
+    // FindAll
     val pedidos = pedidosController.getPedidos()
     pedidos.forEach { println(it) }
 
-    //Update
+    // Update
     val pedido = pedidosController.getPedidoById(2)
     pedido?.let {
         it.estado = Pedido.TipoEstado.TERMINADO
         pedidosController.updatePedido(it)
     }
 
-    //FindById
+    // FindById
     pedidosController.getPedidoById(2)?.let { println(it) }
 
-    //Delete
+    // Delete
     pedido?.let { if (pedidosController.deletePedido(it)) println(it) }
     println(pedidosController.getPedidos())
 
 
-    //Tareas
-    //FindAll
+    // -- TAREAS --
+    // FindAll
     val tareas = tareaController.getTareas()
     tareas.forEach { println(it) }
 
-    //Update
+    // Update
     val tarea = tareaController.getTareaById(1)
     tarea?.let {
         it.precio += 100.0
         tareaController.updateTarea(it)
     }
 
-    //FindById
+    // FindById
     tareaController.getTareaById(2)?.let { println(it) }
 
-    //Delete
+    // Delete
     tarea?.let { if (tareaController.deleteTarea(it)) println(it) }
     println(tareaController.getTareas())
 
-    // -- OPERACIONES CON ENCORDADORAS --
-    // Encordadoras
+    // -- ENCORDADORAS --
+    // FindAll
     val encordadoras = encordadorasController.getEncordadoras()
     encordadoras.forEach { println(it) }
 
-    // Encontrar encordadora con ID
+    // FindById
     val encordadora = encordadorasController.getEncordadoraById(1) // encordadoras[0].id
     println(encordadora)
 
-    // Actualizado de encordadora
+    // Update
     encordadora?.let {
         it.marca = "MGS"
         encordadorasController.updateEncordadora(it)
     }
     println(encordadora)
 
-    // Borrado de encordadora - NO turno
+    // Delete - NO turno
     encordadora?.let {
         encordadorasController.deleteEncordadora(it)
     }
     println(encordadorasController.getEncordadoras())
 
 
-    // -- OPERACIONES CON PERSONALIZADORAS --
-    // Personalizadoras
+    // -- PERSONALIZADORAS --
+    // FindAll
     val personalizadoras = personalizadorasController.getPersonalizadoras()
     personalizadoras.forEach { println(it) }
 
-    // Encontrar personalizadora con ID
+    // FindById
     val personalizadora = personalizadorasController.getPersonalizadoraById(1) // personalizadoras[0].id
     println(personalizadora)
 
-    // Actualizado de personalizadora
+    // Update
     personalizadora?.let {
         it.marca = "KOTO"
         personalizadorasController.updatePersonalizadora(it)
     }
     println(personalizadora)
 
-    // Borrado de personalizadora - SI turno
+    // Delete - SI turno
     personalizadora?.let {
         personalizadorasController.deletePersonalizadora(it)
     }
     println(personalizadorasController.getPersonalizadoras())
 
-    // -- OPERACIONES CON TURNOS --
-    //Turnos
-    //FindAll
+    // -- TURNOS --
+    // FindAll
     val turnos = turnoController.getTurnos()
     turnos.forEach { println(it) }
 
-    // Encontrar turno con ID
+    // FindById
     val turno = turnoController.getTurnoById(1)
     println(turno)
 
-    // Actualizado de turno
+    // Update
     turno?.let {
         it.trabajador = trabajadorController.getTrabajadores()[2]
         turnoController.updateTurno(it)
     }
     println(turno)
 
-    // Borrado de turno
+    // Delete
     turno?.let {
         turnoController.deleteTurno(it)
     }
     println(turnoController.getTurnos())
 
 
-    // -- OPERACIONES CON RAQUETA --
-    //Raquetas
+    // -- RAQUETAS --
+    // FindAll
     val raquetas = raquetaController.getRaquetas()
     raquetas.forEach { println(it) }
 
-    // Encontrar raqueta con ID
+    // FindById
     val raqueta = raquetaController.getRaquetaById(1)
     println(raqueta)
 
-    // Actualizado de raqueta
+    // Update
     raqueta?.let {
         it.modelo = "Paldea"
         raquetaController.updateRaqueta(it)
     }
     println(raqueta)
 
-    // Borrando raqueta
+    // Delete
     raqueta?.let {
         raquetaController.deleteRaqueta(it)
     }
     println(raquetaController.getRaquetas())
-
-    // -- OPERACIONES CON USUARIOS --
-    // Clientes
-    val clientes = clienteController.getClientes()
-    clientes.forEach { println(it) }
-
-    // Encontrar cliente con ID
-    val cliente = clienteController.getClienteById(1)
-    println(cliente)
-
-    // Actualizado de cliente
-    cliente?.let {
-        cliente.nombre = "Kratos"
-        clienteController.updateCliente(it)
-    }
-    println(cliente)
-
-    // Borrado de un cliente - NO ELIMINACION
 
 }
 

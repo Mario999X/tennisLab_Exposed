@@ -2,6 +2,7 @@ package repositories.raqueta
 
 import entities.RaquetaDao
 import entities.usuario.ClienteDao
+import exceptions.GenericException
 import mappers.fromRaquetaDaoToRaqueta
 import models.Raqueta
 import mu.KotlinLogging
@@ -36,7 +37,8 @@ class RaquetaRepositoryImpl(private val raquetaDao: LongEntityClass<RaquetaDao>)
             uuid = entity.uuid
             marca = entity.marca
             modelo = entity.modelo
-            cliente = ClienteDao.findById(entity.cliente.id)!!
+            cliente = ClienteDao.findById(entity.cliente.id)
+                ?: throw GenericException("Cliente no encontrado")
         }.fromRaquetaDaoToRaqueta()
     }
 
@@ -46,7 +48,8 @@ class RaquetaRepositoryImpl(private val raquetaDao: LongEntityClass<RaquetaDao>)
             uuid = entity.uuid
             marca = entity.marca
             modelo = entity.modelo
-            cliente = ClienteDao.findById(entity.cliente.id)!!
+            cliente = ClienteDao.findById(entity.cliente.id)
+                ?: throw GenericException("Cliente no encontrado")
         }.fromRaquetaDaoToRaqueta()
     }
 

@@ -62,7 +62,6 @@ class EncordadoraRepositoryImpl(private val encordadoraDao: LongEntityClass<Enco
             isManual = entity.isManual
             tensionMax = entity.tensionMax
             tensionMin = entity.tensionMin
-
         }.fromEncordadoraDaoToEncordadora()
     }
 
