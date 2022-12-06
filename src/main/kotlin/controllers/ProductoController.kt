@@ -1,5 +1,6 @@
 package controllers
 
+import exceptions.GenericException
 import models.Producto
 import mu.KotlinLogging
 import repositories.producto.ProductoRepository
@@ -14,7 +15,7 @@ class ProductoController(private val productoRepository: ProductoRepository) {
 
     fun getProductoById(id: Long): Producto? {
         log.info("Obteniendo producto por ID $id")
-        return productoRepository.findById(id)
+        return productoRepository.findById(id) ?: throw GenericException("Producto con id $id no encontrado")
     }
 
     fun updateProducto(producto: Producto) {

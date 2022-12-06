@@ -9,7 +9,7 @@ data class Producto(
     @Expose val uuid: UUID = UUID.randomUUID(),
     @Expose val tipo: Tipo,
     @Expose val marca: String,
-    @Expose val modelo: String,
+    @Expose var modelo: String,
     @Expose val stock: Int,
     @Expose var precio: Double
 ) {

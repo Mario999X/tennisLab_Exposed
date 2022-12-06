@@ -1,5 +1,6 @@
 package controllers
 
+import exceptions.GenericException
 import models.Pedido
 import mu.KotlinLogging
 import repositories.pedido.PedidoRepository
@@ -15,7 +16,7 @@ class PedidoController(private val pedidoRepository: PedidoRepository) {
 
     fun getPedidoById(id: Long): Pedido? {
         log.info { "Obteniendo pedido por ID $id" }
-        return pedidoRepository.findById(id)
+        return pedidoRepository.findById(id) ?: throw GenericException("Pedido con id $id no encontrado")
     }
 
     fun updatePedido(pedido: Pedido) {

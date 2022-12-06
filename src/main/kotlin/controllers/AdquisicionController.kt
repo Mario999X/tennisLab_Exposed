@@ -1,5 +1,6 @@
 package controllers
 
+import exceptions.GenericException
 import models.Adquisicion
 import mu.KotlinLogging
 import repositories.adquisicion.AdquisicionRepository
@@ -14,7 +15,7 @@ class AdquisicionController(private val adquisicionRepository: AdquisicionReposi
 
     fun getAdquisicionById(id: Long): Adquisicion? {
         log.info("Obteniendo adquisicion por id: $id")
-        return adquisicionRepository.findById(id)
+        return adquisicionRepository.findById(id) ?: throw GenericException("Adquisicion con id $id no encontrada")
     }
 
     fun updateAdquisicion(adquisicion: Adquisicion) {
