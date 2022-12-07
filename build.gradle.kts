@@ -6,22 +6,27 @@ plugins {
     id("org.jetbrains.kotlinx.dataframe") version "0.8.1"
     // Plugin para serializar
     kotlin("plugin.serialization") version "1.7.10"
+    //Dokka Documentación Kotlin
+    id("org.jetbrains.dokka") version "1.7.20"
     application
 }
 
 group = "es.mendoza.resa"
-version = "1.0-SNAPSHOT"
+version = "1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    //Test
     testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:1.13.2")
     // Exposed
     implementation("org.jetbrains.exposed:exposed-core:0.39.2")
     implementation("org.jetbrains.exposed:exposed-dao:0.39.2")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.39.2")
+    implementation("org.jetbrains.exposed:exposed-java-time:0.39.2")
     // Base de Datos H2 Driver JDBC
     implementation("com.h2database:h2:2.1.214")
     // DataFrames de Kotlin Jetbrains
@@ -35,6 +40,10 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.1")
     // Para manejar un pool de conexions mega rápido con HikariCP (no es obligatorio)
     implementation("com.zaxxer:HikariCP:5.0.1")
+    // gson
+    implementation("com.google.code.gson:gson:2.10")
+    //Dokka Documentación Kotlin
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
 
 tasks.test {
@@ -43,7 +52,13 @@ tasks.test {
 
 tasks {
     val fatJar = register<Jar>("fatJar") {
-        dependsOn.addAll(listOf("compileJava", "compileKotlin", "processResources")) // We need this for Gradle optimization to work
+        dependsOn.addAll(
+            listOf(
+                "compileJava",
+                "compileKotlin",
+                "processResources"
+            )
+        ) // We need this for Gradle optimization to work
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         manifest { attributes(mapOf("Main-Class" to application.mainClass)) } // Provided we set it up in the application plugin configuration
         val sourcesMain = sourceSets.main.get()
