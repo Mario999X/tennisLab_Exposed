@@ -40,7 +40,8 @@ class AdquisicionRepositoryImplTest {
     private val adquisicion =
         Adquisicion(id = 1L, cantidad = 2, producto = producto)
 
-    private lateinit var daoItem: AdquisicionDao
+    private lateinit var daoItemAdquisicion: AdquisicionDao
+    private lateinit var daoItemProducto: ProductoDao
 
     init {
         MockKAnnotations.init(this)
@@ -60,7 +61,17 @@ class AdquisicionRepositoryImplTest {
     fun beforeEach() {
         DataBaseManager.clearTablas()
         transaction {
-            daoItem = AdquisicionDao.new(adquisicion.id) {
+            daoItemProducto = ProductoDao.new(producto.id) {
+                uuid = producto.uuid
+                tipo = producto.tipo.item
+                marca = producto.marca
+                modelo = producto.modelo
+                stock = producto.stock
+                precio = producto.precio
+            }
+        }
+        transaction {
+            daoItemAdquisicion = AdquisicionDao.new(adquisicion.id) {
                 uuid = adquisicion.uuid
                 producto = adquisicion.producto?.let { ProductoDao.findById(it.id) }
                 descripcion = adquisicion.descripcion!!
@@ -72,24 +83,52 @@ class AdquisicionRepositoryImplTest {
 
     @Test
     fun findAll() {
-        every { adquisicionDao.all() } returns SizedCollection(listOf(daoItem))
-
+        every { adquisicionDao.all() } returns SizedCollection(listOf(daoItemAdquisicion))
         val res = adquisicionRepository.findAll()
-
-        assert(1 == res.size)
-
+        assertAll(
+            { assert(1 == res.size) },
+            { assert(res[0].uuid == adquisicion.uuid) }
+        )
         verify { adquisicionDao.all() }
     }
 
     @Test
     fun findById() {
+        every { adquisicionDao.findById(adquisicion.id) } returns daoItemAdquisicion
+        val res = adquisicionRepository.findById(adquisicion.id)
+        assert(res?.uuid == adquisicion.uuid)
+        verify { adquisicionDao.findById(adquisicion.id) }
+    }
+
+    @Test
+    fun findByIdNoExiste() {
+        every { adquisicionDao.findById(adquisicion.id) } returns null
+        val res = adquisicionRepository.findById(adquisicion.id)
+        assert(res == null)
+        verify { adquisicionDao.findById(adquisicion.id) }
     }
 
     @Test
     fun save() {
+        every { adquisicionDao.findById(adquisicion.id) } returns daoItemAdquisicion
+        val res = adquisicionRepository.save(adquisicion)
+        assert(res.id == adquisicion.id)
+        verify { adquisicionDao.findById(adquisicion.id) }
     }
 
     @Test
     fun delete() {
+        every { adquisicionDao.findById(adquisicion.id) } returns daoItemAdquisicion
+        val res = adquisicionRepository.delete(adquisicion)
+        assert(res)
+        verify { adquisicionDao.findById(adquisicion.id) }
+    }
+
+    @Test
+    fun deleteNoExiste() {
+        every { adquisicionDao.findById(adquisicion.id) } returns null
+        val res = adquisicionRepository.delete(adquisicion)
+        assert(!res)
+        verify { adquisicionDao.findById(adquisicion.id) }
     }
 }
