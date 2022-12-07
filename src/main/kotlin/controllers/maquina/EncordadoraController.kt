@@ -4,7 +4,6 @@ import exceptions.GenericException
 import models.maquina.Encordadora
 import mu.KotlinLogging
 import repositories.encordadora.EncordadoraRepository
-import java.util.UUID
 
 private val log = KotlinLogging.logger { }
 
@@ -18,11 +17,6 @@ class EncordadoraController(private val encordadoraRepository: EncordadoraReposi
     fun getEncordadoraById(id: Long): Encordadora {
         log.info { "Obteniendo encordadora por ID $id" }
         return encordadoraRepository.findById(id) ?: throw GenericException("Encordadora con id $id no encontrada")
-    }
-
-    fun getEncordadorasByUuid(uuid: UUID): Encordadora? {
-        log.info { "Obteniendo encordadora por UUID $uuid" }
-        return encordadoraRepository.findByUuid(uuid)
     }
 
     fun updateEncordadora(encordadora: Encordadora) {

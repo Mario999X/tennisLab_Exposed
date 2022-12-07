@@ -73,7 +73,7 @@ class AdquisicionRepositoryImplTest {
         transaction {
             daoItemAdquisicion = AdquisicionDao.new(adquisicion.id) {
                 uuid = adquisicion.uuid
-                producto = adquisicion.producto.let { ProductoDao.findById(adquisicion.id) }
+                producto = adquisicion.producto?.let { ProductoDao.findById(it.id) }
                 descripcion = adquisicion.descripcion!!
                 cantidad = adquisicion.cantidad
                 precio = adquisicion.precio!!

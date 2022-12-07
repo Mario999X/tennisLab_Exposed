@@ -21,7 +21,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
-import repositories.producto.ProductoRepository
 import repositories.producto.ProductoRepositoryImpl
 
 @ExtendWith(MockKExtension::class)
@@ -74,7 +73,7 @@ internal class ProductoRepositoryImplTest {
         val res = productoRepository.findAll()
         assertAll(
             { assert(1 == res.size) },
-            { assert(res[0] == producto) }
+            { assert(res[0].uuid == producto.uuid) }
         )
         verify { productoDao.all() }
     }
