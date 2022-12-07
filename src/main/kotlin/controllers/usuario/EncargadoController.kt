@@ -1,5 +1,8 @@
 package controllers.usuario
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.usuario.Encargado
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.usuario.EncargadoRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * EncargadoController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property encargadoRepository EncargadoRepository
+ */
 class EncargadoController(private val encargadoRepository: EncargadoRepository) {
     fun getEncargados(): List<Encargado> {
         log.info { "Obteniendo encargados" }

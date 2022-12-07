@@ -1,5 +1,8 @@
 package controllers
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.Pedido
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.pedido.PedidoRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * PedidoController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property pedidoRepository PedidoRepository
+ */
 class PedidoController(private val pedidoRepository: PedidoRepository) {
 
     fun getPedidos(): List<Pedido>{
@@ -14,7 +22,7 @@ class PedidoController(private val pedidoRepository: PedidoRepository) {
         return pedidoRepository.findAll()
     }
 
-    fun getPedidoById(id: Long): Pedido? {
+    fun getPedidoById(id: Long): Pedido {
         log.info { "Obteniendo pedido por ID $id" }
         return pedidoRepository.findById(id) ?: throw GenericException("Pedido con id $id no encontrado")
     }

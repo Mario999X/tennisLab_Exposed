@@ -30,8 +30,20 @@ import repositories.usuario.TrabajadorRepositoryImpl
 import java.io.File
 import java.nio.file.Paths
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 private val log = KotlinLogging.logger { }
-fun main() {
+
+/**
+ * Main() Funcion principal del programa
+ *
+ * En el se cargan los controllers de los componentes de la aplicacion, se introducen los datos de Data y se
+ * operan con ellos / Operaciones CRUD.
+ *
+ * @param args
+ */
+fun main(args: Array<String>) {
     log.info("TennisLab App")
     initDataBase()
 
@@ -166,16 +178,16 @@ fun main() {
 
     // Update
     val producto = productosController.getProductoById(1)
-    producto?.let {
+    producto.let {
         it.precio += 10.05
         productosController.updateProducto(it)
     }
 
     // FindById
-    productosController.getProductoById(1)?.let { println(it) }
+    productosController.getProductoById(1).let { println(it) }
 
     // Delete
-    producto?.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
+    producto.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
     println(productosController.getProductos())
 
     // -- ADQUISICIONES --
@@ -185,16 +197,16 @@ fun main() {
 
     // Update
     val adquisicion = adquisicionController.getAdquisicionById(2)
-    adquisicion?.let {
+    adquisicion.let {
         it.cantidad += 1
         adquisicionController.updateAdquisicion(it)
     }
 
     // FindById
-    adquisicionController.getAdquisicionById(2)?.let { println(it) }
+    println(adquisicionController.getAdquisicionById(2))
 
     // Delete
-    adquisicion?.let { if (adquisicionController.deleteAdquisicion(it)) println(it) }
+    adquisicion.let { if (adquisicionController.deleteAdquisicion(it)) println(it) }
     println(adquisicionController.getAdquisiciones())
 
     // -- PERSONALIZACIONES --
@@ -204,16 +216,16 @@ fun main() {
 
     // Update
     val personalizacion = personalizarController.getPersonalizadoById(1)
-    personalizacion?.let {
+    personalizacion.let {
         it.peso += 0.43
         personalizarController.updatePersonalizado(it)
     }
 
     // FindById
-    personalizarController.getPersonalizadoById(1)?.let { println(it) }
+    println(personalizarController.getPersonalizadoById(1))
 
     // Delete
-    personalizacion?.let { if (personalizarController.deletePersonalizado(it)) println(it) }
+    personalizacion.let { if (personalizarController.deletePersonalizado(it)) println(it) }
     println(personalizarController.getPersonalizaciones())
 
     // -- ENCORDADOS --
@@ -223,16 +235,16 @@ fun main() {
 
     // Update
     val encordado = encordarController.getEncordadoById(1)
-    encordado?.let {
+    encordado.let {
         it.nudos -= 1
         encordarController.updateEncordado(it)
     }
 
     // FindById
-    encordarController.getEncordadoById(1)?.let { println(it) }
+    println(encordarController.getEncordadoById(1))
 
     // Delete
-    encordado?.let { if (encordarController.deleteEncordado(it)) println(it) }
+    encordado.let { if (encordarController.deleteEncordado(it)) println(it) }
     println(encordarController.getEncordados())
 
     // -- PEDIDOS --
@@ -242,16 +254,16 @@ fun main() {
 
     // Update
     val pedido = pedidosController.getPedidoById(2)
-    pedido?.let {
+    pedido.let {
         it.estado = Pedido.TipoEstado.TERMINADO
         pedidosController.updatePedido(it)
     }
 
     // FindById
-    pedidosController.getPedidoById(2)?.let { println(it) }
+    println(pedidosController.getPedidoById(2))
 
     // Delete
-    pedido?.let { if (pedidosController.deletePedido(it)) println(it) }
+    pedido.let { if (pedidosController.deletePedido(it)) println(it) }
     println(pedidosController.getPedidos())
 
 
@@ -262,16 +274,16 @@ fun main() {
 
     // Update
     val tarea = tareaController.getTareaById(1)
-    tarea?.let {
+    tarea.let {
         it.precio += 100.0
         tareaController.updateTarea(it)
     }
 
     // FindById
-    tareaController.getTareaById(2)?.let { println(it) }
+    println(tareaController.getTareaById(2))
 
     // Delete
-    tarea?.let { if (tareaController.deleteTarea(it)) println(it) }
+    tarea.let { if (tareaController.deleteTarea(it)) println(it) }
     println(tareaController.getTareas())
 
     // -- ENCORDADORAS --
@@ -367,6 +379,10 @@ fun main() {
 }
 
 
+/**
+ * InitDataBase(), Funcion que se encarga de cargar la configuracion de la BBDD
+ *
+ */
 fun initDataBase() {
     val path =
         Paths.get("src" + File.separator + "main" + File.separator + "resources" + File.separator + "config.properties")

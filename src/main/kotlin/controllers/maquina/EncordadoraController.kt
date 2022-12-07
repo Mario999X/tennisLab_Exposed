@@ -1,5 +1,8 @@
 package controllers.maquina
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.maquina.Encordadora
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.encordadora.EncordadoraRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * EncordadoraController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property encordadoraRepository EncordadoraRepository
+ */
 class EncordadoraController(private val encordadoraRepository: EncordadoraRepository) {
 
     fun getEncordadoras(): List<Encordadora> {

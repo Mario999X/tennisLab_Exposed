@@ -1,5 +1,8 @@
 package controllers.maquina
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.maquina.Personalizadora
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.personalizadora.PersonalizadoraRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * PersonalizadoraController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property personalizadoraRepository PersonalizadoraRepository
+ */
 class PersonalizadoraController(private val personalizadoraRepository: PersonalizadoraRepository) {
 
     fun getPersonalizadoras(): List<Personalizadora> {

@@ -1,5 +1,8 @@
 package database
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import models.*
 import models.maquina.Encordadora
 import models.maquina.Personalizadora
@@ -8,6 +11,10 @@ import models.usuario.Encargado
 import models.usuario.Trabajador
 import java.time.LocalDate
 
+/**
+ * getClientesInit(), inicia una lista de clientes
+ *
+ */
 fun getClientesInit() = listOf(
     Cliente(
         id = 1L,
@@ -32,6 +39,10 @@ fun getClientesInit() = listOf(
     )
 )
 
+/**
+ * getTrabajadorInit(), inicia una lista de trabajadores
+ *
+ */
 fun getTrabajadorInit() = listOf(
     Trabajador(
         id = 1L,
@@ -56,6 +67,10 @@ fun getTrabajadorInit() = listOf(
     )
 )
 
+/**
+ * getEncargadoInit(), inicia una lista de encargados
+ *
+ */
 fun getEncargadoInit() = listOf(
     Encargado(
         id = 1L,
@@ -80,6 +95,10 @@ fun getEncargadoInit() = listOf(
     )
 )
 
+/**
+ * getProductoInit(), inicia una lista de productos
+ *
+ */
 fun getProductoInit() = listOf(
     Producto(
         id = 1L,
@@ -99,6 +118,10 @@ fun getProductoInit() = listOf(
     )
 )
 
+/**
+ * getAdquisicionInit(), inicia una lista de adquisicion
+ *
+ */
 fun getAdquisicionInit() = listOf(
     Adquisicion(
         id = 1L,
@@ -113,6 +136,10 @@ fun getAdquisicionInit() = listOf(
 
 )
 
+/**
+ * getPersonalizacionInit(), inicia una lista de personalizar
+ *
+ */
 fun getPersonalizacionInit() = listOf(
     Personalizar(
         id = 1L,
@@ -122,6 +149,10 @@ fun getPersonalizacionInit() = listOf(
     )
 )
 
+/**
+ * getEncordadoInit(), inicia una lista de encordar
+ *
+ */
 fun getEncordadoInit() = listOf(
     Encordar(
         id = 1L,
@@ -133,6 +164,10 @@ fun getEncordadoInit() = listOf(
     )
 )
 
+/**
+ * getTareaInit(), inicia una lista de tareas
+ *
+ */
 fun getTareaInit() = listOf(
     Tarea(
         id = 1L,
@@ -160,6 +195,10 @@ fun getTareaInit() = listOf(
     )
 )
 
+/**
+ * getEncordadorasInit(), inicia una lista de encordadoras
+ *
+ */
 fun getEncordadorasInit() = listOf(
     Encordadora(
         id = 1L,
@@ -173,6 +212,10 @@ fun getEncordadorasInit() = listOf(
     )
 )
 
+/**
+ * getPersonalizadorasInit(), inicia una lista de personalizadoras
+ *
+ */
 fun getPersonalizadorasInit() = listOf(
     Personalizadora(
         id = 1L,
@@ -186,6 +229,10 @@ fun getPersonalizadorasInit() = listOf(
     )
 )
 
+/**
+ * getTurnosInit(), inicia una lista de turnos
+ *
+ */
 fun getTurnosInit() = listOf(
     Turno(
         id = 1L,
@@ -195,7 +242,10 @@ fun getTurnosInit() = listOf(
     )
 )
 
-
+/**
+ * getPedidosInit(), inicia una lista de pedidos.
+ *
+ */
 fun getPedidosInit() = listOf(
     Pedido(
         id = 1L,
@@ -215,6 +265,10 @@ fun getPedidosInit() = listOf(
     ),
 )
 
+/**
+ * getRaquetasInit(), inicia una lista de raquetas.
+ *
+ */
 fun getRaquetasInit() = listOf(
     Raqueta(
         id = 1L,

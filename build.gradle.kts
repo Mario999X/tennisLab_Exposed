@@ -6,11 +6,13 @@ plugins {
     id("org.jetbrains.kotlinx.dataframe") version "0.8.1"
     // Plugin para serializar
     kotlin("plugin.serialization") version "1.7.10"
+    //Dokka Documentación Kotlin
+    id("org.jetbrains.dokka") version "1.7.20"
     application
 }
 
 group = "es.mendoza.resa"
-version = "1.0-SNAPSHOT"
+version = "1"
 
 repositories {
     mavenCentral()
@@ -40,6 +42,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.0.1")
     // gson
     implementation("com.google.code.gson:gson:2.10")
+    //Dokka Documentación Kotlin
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 }
 
 tasks.test {
@@ -48,7 +52,13 @@ tasks.test {
 
 tasks {
     val fatJar = register<Jar>("fatJar") {
-        dependsOn.addAll(listOf("compileJava", "compileKotlin", "processResources")) // We need this for Gradle optimization to work
+        dependsOn.addAll(
+            listOf(
+                "compileJava",
+                "compileKotlin",
+                "processResources"
+            )
+        ) // We need this for Gradle optimization to work
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         manifest { attributes(mapOf("Main-Class" to application.mainClass)) } // Provided we set it up in the application plugin configuration
         val sourcesMain = sourceSets.main.get()

@@ -6,6 +6,17 @@ import java.util.Properties
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * ConfigProject, data class encargada de configurar la conexion con la DDBB
+ *
+ * @property nombre
+ * @property version
+ * @property jdbcUrl
+ * @property jdbcDriver
+ * @property jdbcPool
+ * @property jdbcTablas
+ * @property jdbcSQL
+ */
 data class ConfigProject(
     val nombre: String,
     val version: String,

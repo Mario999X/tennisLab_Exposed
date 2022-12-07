@@ -1,5 +1,8 @@
 package controllers
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.Raqueta
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.raqueta.RaquetaRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * RaquetaController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property raquetaRepository RaquetaRepository
+ */
 class RaquetaController(private val raquetaRepository: RaquetaRepository) {
     fun getRaquetas(): List<Raqueta> {
         log.info("Obteniendo raquetas")

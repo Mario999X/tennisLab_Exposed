@@ -1,5 +1,8 @@
 package mappers
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import entities.usuario.ClienteDao
 import entities.usuario.EncargadoDao
 import entities.usuario.TrabajadorDao
@@ -8,6 +11,11 @@ import models.usuario.Encargado
 import models.usuario.Trabajador
 import utils.Cifrador
 
+/**
+ * FromClienteDaoToCliente(), funcion que obtiene el dato y lo pasa a objeto
+ *
+ * @return Cliente
+ */
 fun ClienteDao.fromClienteDaoToCliente(): Cliente {
     return Cliente(
         id = id.value,
@@ -19,6 +27,11 @@ fun ClienteDao.fromClienteDaoToCliente(): Cliente {
     )
 }
 
+/**
+ * FromEncargadoDaoToEncargado(), funcion que obtiene el dato y lo pasa a objeto
+ *
+ * @return Encargado
+ */
 fun EncargadoDao.fromEncargadoDaoToEncargado(): Encargado {
     return Encargado(
         id = id.value,
@@ -30,6 +43,11 @@ fun EncargadoDao.fromEncargadoDaoToEncargado(): Encargado {
     )
 }
 
+/**
+ * FromTrabajadorDaoToTrabajador(), funcion que obtiene el dato y lo pasa a objeto
+ *
+ * @return Trabajador
+ */
 fun TrabajadorDao.fromTrabajadorDaoToTrabajador(): Trabajador {
     return Trabajador(
         id = id.value,

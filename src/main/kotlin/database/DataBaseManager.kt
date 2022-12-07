@@ -15,8 +15,17 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * DataBaseManager, clase objeto que maneja la BBDD
+ */
 object DataBaseManager {
     lateinit var config: ConfigProject
+
+    /**
+     * Conecta la BBDD
+     *
+     * @param config
+     */
     fun init(config: ConfigProject) {
         this.config = config
         log.debug { "Inicializando la base de datos" }
@@ -33,6 +42,10 @@ object DataBaseManager {
         }
     }
 
+    /**
+     * crearTablas(), inicia las tablas
+     *
+     */
     private fun crearTablas() = transaction {
         log.debug { "Creando las tablas" }
         if (config.jdbcSQL)
@@ -55,6 +68,10 @@ object DataBaseManager {
         log.debug { "Tablas creadas" }
     }
 
+    /**
+     * DropTablas(), borra las tablas
+     *
+     */
     fun dropTablas() = transaction {
         log.debug { "Eliminando las tablas" }
         if (config.jdbcSQL)
@@ -77,6 +94,10 @@ object DataBaseManager {
         log.debug { "Tablas eliminadas" }
     }
 
+    /**
+     * ClearTablas(), limpia las tablas
+     *
+     */
     fun clearTablas() = transaction {
         log.debug { "Limpiando tablas" }
         if (config.jdbcSQL)

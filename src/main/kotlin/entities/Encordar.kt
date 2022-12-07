@@ -1,10 +1,16 @@
 package entities
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
 
+/**
+ * EncordarTable, clase objeto que genera una tabla
+ */
 object EncordarTable : LongIdTable("encordados") {
     val uuid = uuid("uuid")
     val tenCuHori = double("tension_horizontal")
@@ -15,6 +21,13 @@ object EncordarTable : LongIdTable("encordados") {
     val precio = double("precio")
 }
 
+/**
+ * EncordarDao, clase de paso objeto a dato de la tabla
+ *
+ * @constructor ID
+ *
+ * @param id EntityID<Long>
+ */
 class EncordarDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<EncordarDao>(EncordarTable)
 
