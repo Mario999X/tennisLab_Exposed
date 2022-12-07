@@ -7,7 +7,6 @@ import models.usuario.Cliente
 import models.usuario.Encargado
 import models.usuario.Trabajador
 import java.time.LocalDate
-import java.util.*
 
 fun getClientesInit() = listOf(
     Cliente(
@@ -200,7 +199,6 @@ fun getTurnosInit() = listOf(
 fun getPedidosInit() = listOf(
     Pedido(
         id = 1L,
-        UUID.randomUUID(),
         estado = Pedido.TipoEstado.RECIBIDO,
         fechaEntrada = LocalDate.now(),
         fechaProgramada = LocalDate.now().plusDays(1),
@@ -209,7 +207,6 @@ fun getPedidosInit() = listOf(
     ),
     Pedido(
         id = 2L,
-        UUID.randomUUID(),
         estado = Pedido.TipoEstado.PROCESANDO,
         fechaEntrada = LocalDate.now(),
         fechaProgramada = LocalDate.now().plusDays(1),
