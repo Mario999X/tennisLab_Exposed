@@ -1,5 +1,8 @@
 package controllers
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.Turno
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.turno.TurnoRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * TurnoController, clase que usa los metodos del respectivo repositorio
+ *
+ * @property turnoRepository TurnoRepository
+ */
 class TurnoController(private val turnoRepository: TurnoRepository) {
 
     fun getTurnos(): List<Turno> {

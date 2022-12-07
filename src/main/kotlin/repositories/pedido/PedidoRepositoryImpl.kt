@@ -1,5 +1,8 @@
 package repositories.pedido
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import entities.PedidoDao
 import entities.usuario.ClienteDao
 import exceptions.GenericException
@@ -11,18 +14,40 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * PedidoRepositoryImpl, Clase que realiza operaciones CRUD, pedidos.
+ *
+ * @property pedidoDao PedidoMapper
+ */
 class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : PedidoRepository {
+    /**
+     * FindAll()
+     *
+     * @return Lista de pedidos
+     */
     override fun findAll(): List<Pedido> = transaction {
         log.debug { "findAll()" }
         pedidoDao.all().map { it.fromPedidoDaoToPedido() }
 
     }
 
+    /**
+     * FindById()
+     *
+     * @param id Identificador de pedido
+     * @return Pedido o Null
+     */
     override fun findById(id: Long): Pedido? = transaction {
         log.debug { "findById($id" }
         pedidoDao.findById(id)?.fromPedidoDaoToPedido()
     }
 
+    /**
+     * Save(), guarda o actualiza el entity
+     *
+     * @param entity Pedido
+     * @return Pedido
+     */
     override fun save(entity: Pedido): Pedido = transaction {
         val existe = pedidoDao.findById(entity.id)
         existe?.let {
@@ -32,6 +57,12 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
         }
     }
 
+    /**
+     * Insert(), se introduce el dato
+     *
+     * @param entity Pedido
+     * @return Pedido
+     */
     private fun insert(entity: Pedido): Pedido {
         log.debug { "save($entity) - creando" }
         return pedidoDao.new(entity.id) {
@@ -45,6 +76,13 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
         }.fromPedidoDaoToPedido()
     }
 
+    /**
+     * Update(), se actualiza el dato
+     *
+     * @param entity Pedido
+     * @param existe PedidoDao
+     * @return Pedido
+     */
     private fun update(entity: Pedido, existe: PedidoDao): Pedido {
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
@@ -58,6 +96,12 @@ class PedidoRepositoryImpl(private val pedidoDao: LongEntityClass<PedidoDao>) : 
         }.fromPedidoDaoToPedido()
     }
 
+    /**
+     * Delete(), se elimina el dato
+     *
+     * @param entity Pedido
+     * @return Boolean
+     */
     override fun delete(entity: Pedido): Boolean = transaction {
         val existe = pedidoDao.findById(entity.id) ?: return@transaction false
         log.debug { "delete($entity) - borrando" }

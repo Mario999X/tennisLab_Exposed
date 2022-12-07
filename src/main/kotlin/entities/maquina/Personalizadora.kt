@@ -1,11 +1,17 @@
 package entities.maquina
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.javatime.date
 
+/**
+ * PersonalizadoraTable, clase objeto que genera una tabla
+ */
 object PersonalizadoraTable : LongIdTable("personalizadoras") {
     val uuid = uuid("uuid")
     val marca = varchar("marca", 100)
@@ -17,6 +23,13 @@ object PersonalizadoraTable : LongIdTable("personalizadoras") {
     val rigidez = bool("rigidez")
 }
 
+/**
+ * PersonalizadoraDao, clase de paso objeto a dato de la tabla
+ *
+ * @constructor ID
+ *
+ * @param id EntityID<Long>
+ */
 class PersonalizadoraDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<PersonalizadoraDao>(PersonalizadoraTable)
 

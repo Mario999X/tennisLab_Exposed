@@ -1,5 +1,8 @@
 package controllers.usuario
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.usuario.Cliente
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.usuario.ClienteRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * ClienteController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property clienteRepository ClienteRepository
+ */
 class ClienteController(private val clienteRepository: ClienteRepository) {
     fun getClientes(): List<Cliente> {
         log.info { "Obteniendo clientes" }

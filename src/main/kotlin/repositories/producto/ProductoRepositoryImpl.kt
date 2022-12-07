@@ -1,5 +1,8 @@
 package repositories.producto
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import entities.ProductoDao
 import mappers.fromProductoDaoToProducto
 import models.Producto
@@ -9,17 +12,39 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * ProductoRepositoryImpl Clase que realiza operaciones CRUD, productos.
+ *
+ * @property productoDao ProductoMapper
+ */
 class ProductoRepositoryImpl(private val productoDao: LongEntityClass<ProductoDao>) : ProductoRepository {
+    /**
+     * FindAll()
+     *
+     * @return Lista de productos
+     */
     override fun findAll(): List<Producto> = transaction {
         log.debug { "findAll()" }
         productoDao.all().map { it.fromProductoDaoToProducto() }
     }
 
+    /**
+     * FindById()
+     *
+     * @param id Identificador de producto
+     * @return Producto o Null
+     */
     override fun findById(id: Long): Producto? = transaction {
         log.debug { "findById($id)" }
         productoDao.findById(id)?.fromProductoDaoToProducto()
     }
 
+    /**
+     * Save(), guarda o actualiza el entity
+     *
+     * @param entity Producto
+     * @return Producto
+     */
     override fun save(entity: Producto): Producto = transaction {
         val existe = productoDao.findById(entity.id)
         existe?.let {
@@ -29,6 +54,12 @@ class ProductoRepositoryImpl(private val productoDao: LongEntityClass<ProductoDa
         }
     }
 
+    /**
+     * Insert(), Se introduce el dato
+     *
+     * @param entity Producto
+     * @return Producto
+     */
     private fun insert(entity: Producto): Producto {
         log.debug { "save($entity) - creando" }
         return productoDao.new(entity.id) {
@@ -41,6 +72,13 @@ class ProductoRepositoryImpl(private val productoDao: LongEntityClass<ProductoDa
         }.fromProductoDaoToProducto()
     }
 
+    /**
+     * Update(), se actualiza el dato
+     *
+     * @param entity Producto
+     * @param existe ProductoDao
+     * @return Producto
+     */
     private fun update(entity: Producto, existe: ProductoDao): Producto {
         log.debug { "save($entity) - actualizando" }
         return existe.apply {
@@ -53,6 +91,12 @@ class ProductoRepositoryImpl(private val productoDao: LongEntityClass<ProductoDa
         }.fromProductoDaoToProducto()
     }
 
+    /**
+     * Delete(), Se elimina el dato
+     *
+     * @param entity Producto
+     * @return Boolean
+     */
     override fun delete(entity: Producto): Boolean = transaction {
         val existe = productoDao.findById(entity.id) ?: return@transaction false
         log.debug { "delete($entity) - borrando" }

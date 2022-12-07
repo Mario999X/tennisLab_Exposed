@@ -1,10 +1,16 @@
 package entities.usuario
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
 
+/**
+ * EncargadoTable, clase objeto que genera una tabla
+ */
 object EncargadoTable : LongIdTable("encargados") {
     val uuid = uuid("uuid")
     val nombre = varchar("nombre", 100)
@@ -14,6 +20,13 @@ object EncargadoTable : LongIdTable("encargados") {
     val perfil = varchar("rol", 50)
 }
 
+/**
+ * EncargadoDao, clase de paso objeto a dato de la tabla
+ *
+ * @constructor ID
+ *
+ * @param id EntityID<Long>
+ */
 class EncargadoDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<EncargadoDao>(EncargadoTable)
 

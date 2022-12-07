@@ -1,5 +1,8 @@
 package models
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
 import models.usuario.Trabajador

@@ -1,5 +1,9 @@
 package models.maquina
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
+
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
 import java.time.LocalDate

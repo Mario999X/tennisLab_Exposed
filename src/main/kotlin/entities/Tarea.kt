@@ -1,5 +1,8 @@
 package entities
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import entities.usuario.TrabajadorDao
 import entities.usuario.TrabajadorTable
 import org.jetbrains.exposed.dao.LongEntity
@@ -8,6 +11,9 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.ReferenceOption
 
+/**
+ * TareaTable, clase objeto que genera una tabla
+ */
 object TareaTable : LongIdTable("tareas") {
     val uuid = uuid("uuid")
     val adquisicion = reference("adquisicion_uuid", AdquisicionTable, onDelete = ReferenceOption.SET_NULL).nullable()
@@ -19,6 +25,13 @@ object TareaTable : LongIdTable("tareas") {
     val trabajadorId = reference("trabajador_id", TrabajadorTable)
 }
 
+/**
+ * TareaDao, clase de paso objeto a dato de la tabla
+ *
+ * @constructor ID
+ *
+ * @param id EntityId<Long>
+ */
 class TareaDao(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<TareaDao>(TareaTable)
 

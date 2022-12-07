@@ -1,5 +1,8 @@
 package controllers.usuario
 
+/**
+ * @author Sebastian Mendoza y Mario Resa
+ */
 import exceptions.GenericException
 import models.usuario.Trabajador
 import mu.KotlinLogging
@@ -7,6 +10,11 @@ import repositories.usuario.TrabajadorRepository
 
 private val log = KotlinLogging.logger { }
 
+/**
+ * TrabajadorController, clase que usa los metodos del respectivo repositorio.
+ *
+ * @property trabajadorRepository TrabajadorRepository
+ */
 class TrabajadorController(private val trabajadorRepository: TrabajadorRepository) {
     fun getTrabajadores(): List<Trabajador> {
         log.info { "Obteniendo trabajadores" }
