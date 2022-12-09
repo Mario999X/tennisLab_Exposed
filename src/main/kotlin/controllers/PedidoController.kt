@@ -34,7 +34,10 @@ class PedidoController(private val pedidoRepository: PedidoRepository) {
 
     fun deletePedido(it: Pedido): Boolean {
         log.info { "Borrando pedido $it" }
-        return pedidoRepository.delete(it)
+        return if (pedidoRepository.delete(it))
+            true
+        else
+            throw GenericException("Pedido con id ${it.id} no encontrado")
     }
 
     fun createPedido(pedido: Pedido): Pedido {

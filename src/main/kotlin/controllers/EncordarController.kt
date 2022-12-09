@@ -33,7 +33,10 @@ class EncordarController(private val encordarRepository: EncordarRepository) {
 
     fun deleteEncordado(it: Encordar): Boolean {
         log.info("Borrando encordado $it")
-        return encordarRepository.delete(it)
+        return if (encordarRepository.delete(it))
+            true
+        else
+            throw GenericException("Encordado con id ${it.id} no encontrado")
     }
 
     fun createEncordado(encordado: Encordar): Encordar {
