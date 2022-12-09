@@ -29,8 +29,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-java-time:0.39.2")
     // Base de Datos H2 Driver JDBC
     implementation("com.h2database:h2:2.1.214")
-    // DataFrames de Kotlin Jetbrains
-    implementation("org.jetbrains.kotlinx:dataframe:0.8.1")
     // Si quiero usar DataTime de Jetbrains Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
     // Kotlin's serialization JSON
