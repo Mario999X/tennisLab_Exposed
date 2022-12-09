@@ -33,7 +33,10 @@ class AdquisicionController(private val adquisicionRepository: AdquisicionReposi
 
     fun deleteAdquisicion(it: Adquisicion): Boolean {
         log.info { "Borrando adquisicion $it" }
-        return adquisicionRepository.delete(it)
+        return if (adquisicionRepository.delete(it))
+            true
+        else
+            throw GenericException("Adquisicion con id ${it.id} no encontrada")
     }
 
     fun createAdquisicion(adquisicion: Adquisicion): Adquisicion {

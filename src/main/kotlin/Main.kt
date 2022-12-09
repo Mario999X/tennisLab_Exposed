@@ -184,7 +184,7 @@ fun main(args: Array<String>) {
     }
 
     // FindById
-    productosController.getProductoById(1).let { println(it) }
+    println(productosController.getProductoById(1))
 
     // Delete
     producto.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }

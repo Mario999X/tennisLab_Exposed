@@ -33,7 +33,10 @@ class TareaController(private val tareaRepository: TareaRepository) {
 
     fun deleteTarea(it: Tarea): Boolean {
         log.info { "Borrando tarea $it" }
-        return tareaRepository.delete(it)
+        return if (tareaRepository.delete(it))
+            true
+        else
+            throw GenericException("Tarea con id ${it.id} no encontrado")
     }
 
     fun createTarea(tarea: Tarea): Tarea {

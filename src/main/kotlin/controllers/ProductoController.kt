@@ -32,8 +32,11 @@ class ProductoController(private val productoRepository: ProductoRepository) {
     }
 
     fun deleteProducto(it: Producto): Boolean {
-        log.info("Borrando usuario $it")
-        return productoRepository.delete(it)
+        log.info("Borrando producto $it")
+        return if (productoRepository.delete(it))
+            true
+        else
+            throw GenericException("Producto con id ${it.id} no encontrado")
     }
 
     fun createProducto(producto: Producto): Producto {

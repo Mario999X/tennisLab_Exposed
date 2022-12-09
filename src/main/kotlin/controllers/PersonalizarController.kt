@@ -33,7 +33,10 @@ class PersonalizarController(private val personalizarRepository: PersonalizarRep
 
     fun deletePersonalizado(it: Personalizar): Boolean {
         log.info("Borrando personalizado $it")
-        return personalizarRepository.delete(it)
+        return if (personalizarRepository.delete(it))
+            true
+        else
+            throw GenericException("Personalizado con id ${it.id} no encontrado")
     }
 
     fun createPersonalizacion(personalizar: Personalizar): Personalizar {
