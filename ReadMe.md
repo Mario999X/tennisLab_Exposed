@@ -4,11 +4,13 @@
 Proyecto de gestión de base de datos de una tienda de raquetas para la asignatura Acceso a Datos del IES Luis Vives (
 Leganés).
 
+## [Vídeo de presentación](https://drive.google.com/file/d/19Bp-N-HHXtHFWn56nco5hsGuS10d6THZ/view?usp=share_link)
+
 ## Índice
 
 - [Diseño](#diseño)
 - [Estructura del proyecto](#estructura-del-proyecto)
-- [Funcionamiento de la aplicacion](#funcionamiento-de-la-aplicación)
+- [Funcionamiento de la aplicación](#funcionamiento-de-la-aplicación)
 - [Tests](#tests)
 
 ## Diseño
@@ -41,7 +43,7 @@ ejercicio propuesto, nosotros consideramos que el diagrama de clases sea el sigu
 ### Configuración del proyecto
 
 Hecho el diagrama, el siguiente pasó fue configurar el proyecto. En nuestro caso se
-utilizó [Gradle](https://www.h2database.com/html/main.html) para gestionar las dependencias que necesitaría el proyecto:
+utilizó [Gradle](https://gradle.org/) para gestionar las dependencias que necesitaría el proyecto:
 
 ````kotlin
 dependencies {
@@ -442,7 +444,7 @@ de cada tabla creada. Al ser un Main tan extenso, enseñaremos el CRUD de una so
 
 Para poder hacer el CRUD de una tabla, primero hemos creado una clase donde introducimos información. Como nuestro
 ejemplo es la clase Adquisición, dicha clase implementa un objeto externo, en este caso la clase Producto. Es por ello,
-que en el ejemplo, aparecerá información de las dos clases
+que en el ejemplo, aparecerá información de las dos clases.
 
 ### Datos
 
@@ -506,12 +508,35 @@ fun main(args: Array<String>) {
     initDataBase()
 
     //Controllers
+    val productosController = ProductoController(ProductoRepositoryImpl(ProductoDao))
     val adquisicionController = AdquisicionController(AdquisicionRepositoryImpl(AdquisicionDao))
 
     //Inserción de datos
+    getProductoInit().forEach { producto ->
+        productosController.createProducto(producto)
+    }
     getAdquisicionInit().forEach { adquisicion ->
         adquisicionController.createAdquisicion(adquisicion)
     }
+    //CRUD
+    // Productos
+    // FindAll
+    val productos = productosController.getProductos()
+    productos.forEach { println(it) }
+
+    // Update
+    val producto = productosController.getProductoById(1)
+    producto.let {
+        it.precio += 10.05
+        productosController.updateProducto(it)
+    }
+
+    // FindById
+    println(productosController.getProductoById(1))
+
+    // Delete
+    producto.let { if (productosController.deleteProducto(it)) println("Producto eliminado") }
+    println(productosController.getProductos())
 
     //Adquisiciones
     // FindAll
